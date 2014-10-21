@@ -10,7 +10,7 @@ package mathlibrary;
  * @author Christian
  */
 public class Vector3 {
-        public final double x;
+    public final double x;
     public final double y;
     public final double z;
     public final double magnitude;
@@ -21,5 +21,14 @@ public class Vector3 {
         this.z = z;
         this.magnitude = Math.sqrt(x*x + y*y + z*z);
     }
+    
+    public Vector3 add(Vector3 v){
+        return new Vector3(x + v.x,
+                           y + v.y,
+                           z + v.z
+        );
+    }
+    
+    
     
 }
