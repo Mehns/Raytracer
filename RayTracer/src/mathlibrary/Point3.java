@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mathlibrary;
 
 /**
@@ -64,7 +60,7 @@ public class Point3 {
     }
     
     /**
-     * The method adds a vector from this point
+     * The method adds a vector to this point
      * @param v is a vector with three coordinates
      * @return a new point
      */
