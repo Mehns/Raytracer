@@ -13,19 +13,26 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author Isch
+ * @author Christian Mehns
  */
 public class ImageLoader extends JFrame{
+    
+    /**
+     * creates a JFrame and loads a user-selected image
+     */
     public ImageLoader(){       
         
+        
         BufferedImage image = null;
+        
+        // FileChooser with Filter for jpg, png
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "jpeg", "png");        
         chooser.setFileFilter(filter);
         chooser.setMultiSelectionEnabled(false);
         
-        int returnValue = chooser.showOpenDialog(null);      
-                
+        // loads Image if user has choosen the right format
+        int returnValue = chooser.showOpenDialog(null);            
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile();
             this.setTitle(chooser.getName(file));
@@ -37,6 +44,7 @@ public class ImageLoader extends JFrame{
             }
         }        
         
+        // fills the window with the image
         ImageIcon icon = new ImageIcon(image);        
         JLabel label = new JLabel(icon);
         setLocationRelativeTo(null);
@@ -47,6 +55,10 @@ public class ImageLoader extends JFrame{
         setVisible(true);        
     }    
 
+    /**
+     * main method, starts the ImageLoader
+     * @param args array of arguments
+     */
     public static void main(String args[])
     {
         new ImageLoader();        
