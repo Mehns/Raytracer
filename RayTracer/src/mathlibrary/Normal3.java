@@ -10,24 +10,55 @@ package mathlibrary;
  * @author Christian
  */
 public class Normal3 {
+    /**
+     * The x-component of the normal.
+     */
     public final double x;
+    /**
+     * The y-component of the normal.
+     */
     public final double y;
+    /**
+     * The z-component of the normal.
+     */
     public final double z;
 
+    /**
+     * Constructs and initializes a normal with 3 double components
+     * 
+     * @param x The X component of this normal
+     * @param y The Y component of this normal
+     * @param z The Z component of this normal
+     */
     public Normal3(final double x, final double y, final double z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
     
+    /**
+     * The method multiplies this normal with a constant
+     * @param n is a double constant
+     * @return a new normal
+     */
     public Normal3 mul(final double n) {
         return new Normal3(this.x * n, this.y * n, this.z * n);
     }
     
+    /**
+     * The method adds a normal to this normal
+     * @param n is a normal with 3 components
+     * @return a new Normal
+     */
     public Normal3 add(final Normal3 n) {
         return new Normal3(this.x + n.x, this.y + n.y, this.z + n.z);
     }
     
+    /**
+     * The method builds the dot product of this normal and a vector
+     * @param v vector which dot product is build with
+     * @return the value of the dot product (double)
+     */
     public double dot(Vector3 v){
         return this.x * v.x + this.y * v.y + this.z * v.z;
     }

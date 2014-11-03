@@ -29,7 +29,7 @@ public class Vector3 {
     public final double magnitude;
 
     /**
-     * Constructs and initializes a vector at the specified (x,y,z) location in the coordinate space
+     * Constructs and initializes a vector
      * calculates and sets the magnitude
      * @param x The X coordinate of this vector
      * @param y The Y coordinate of this vector
@@ -44,7 +44,7 @@ public class Vector3 {
     
     /**
      * The method adds a vector to this vector
-     * @param v is a vector with three coordinates
+     * @param v is a vector with three components
      * @return a new vector
      */
     public Vector3 add(final Vector3 v){

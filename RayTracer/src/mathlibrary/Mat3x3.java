@@ -10,19 +10,63 @@ package mathlibrary;
  * @author Christian
  */
 public class Mat3x3 {
+    /**
+     * The m11-component of the matrix.
+     */
     public final double m11;
+    /**
+     * The m12-component of the matrix.
+     */
     public final double m12;
+    /**
+     * The m13-component of the matrix.
+     */
     public final double m13;
+    /**
+     * The m21-component of the matrix.
+     */
     public final double m21;
+    /**
+     * The m22-component of the matrix.
+     */
     public final double m22;
+    /**
+     * The m23-component of the matrix.
+     */
     public final double m23;
+    /**
+     * The m31-component of the matrix.
+     */
     public final double m31;
+    /**
+     * The m32-component of the matrix.
+     */
     public final double m32;
+    /**
+     * The m33-component of the matrix.
+     */
     public final double m33;
+    /**
+     * The determinant of the matrix.
+     */
     public final double determinant;
 
-    public Mat3x3(final double m11,final double m12, final double m13, final double m21, final double m22, 
-                    final double m23, final double m31, final double m32, final double m33) {
+    /**
+     * Constructs and initializes a matrix with 9 double components
+     * calculate and sets the determinante
+     * @param m11 The m11 component of this matrix
+     * @param m12 The m12 component of this matrix
+     * @param m13 The m13 component of this matrix
+     * @param m21 The m21 component of this matrix
+     * @param m22 The m22 component of this matrix
+     * @param m23 The m23 component of this matrix
+     * @param m31 The m31 component of this matrix
+     * @param m32 The m32 component of this matrix
+     * @param m33 The m33 component of this matrix
+     */
+    public Mat3x3(final double m11,final double m12, final double m13,
+                  final double m21, final double m22, final double m23,
+                  final double m31, final double m32, final double m33) {
         
         this.m11 = m11;
         this.m12 = m12;
@@ -39,6 +83,11 @@ public class Mat3x3 {
         
     }
     
+    /**
+     * The method multiplies this matrix with another matrix
+     * @param m is a matrix with 9 components
+     * @return a new matrix
+     */
     public Mat3x3 mul (final Mat3x3 m){
         return new Mat3x3(
                         this.m11 * m.m11 + this.m12 * m.m21 + this.m13 * m.m31,
@@ -49,48 +98,67 @@ public class Mat3x3 {
                         this.m21 * m.m13 + this.m22 * m.m23 + this.m23 * m.m33,
                         this.m31 * m.m11 + this.m32 * m.m21 + this.m33 * m.m31,
                         this.m31 * m.m12 + this.m32 * m.m22 + this.m33 * m.m32,
-                        this.m31 * m.m13 + this.m32 * m.m23 + this.m33 * m.m33
-        );
+                        this.m31 * m.m13 + this.m32 * m.m23 + this.m33 * m.m33);
     }
     
+    /**
+     * The method multiplies this normal with a vector
+     * @param m is a vector with 3 components
+     * @return a new vektor
+     */
     public Vector3 mul (final Vector3 m){
         return new Vector3(
                             this.m11 * m.x + this.m12 * m.y + this.m13 * m.z,
                             this.m21 * m.x + this.m22 * m.y + this.m23 * m.z,
-                            this.m31 * m.x + this.m32 * m.y + this.m33 * m.z        
-        );
+                            this.m31 * m.x + this.m32 * m.y + this.m33 * m.z);
     }
     
+    /**
+     * The method multiplies this normal with a point
+     * @param p is a point with 3 coordinates
+     * @return a new point
+     */
     public Point3 mul (final Point3 p){
         return new Point3(
                             this.m11 * p.x + this.m12 * p.y + this.m13 * p.z,
                             this.m21 * p.x + this.m22 * p.y + this.m23 * p.z,
-                            this.m31 * p.x + this.m32 * p.y + this.m33 * p.z        
-        );
+                            this.m31 * p.x + this.m32 * p.y + this.m33 * p.z);
     }
     
+    /**
+     * The method changes collum1 of this normal with a vector
+     * @param v is a vector with 3 components
+     * @return a new matrix
+     */
     public Mat3x3 changeCol1 (final Vector3 v){
         return new Mat3x3(
                             v.x, this.m12, this.m13,
                             v.y, this.m22, this.m23,
-                            v.z, this.m32, this.m33
-        );
+                            v.z, this.m32, this.m33);
     }
 
+    /**
+     * The method changes collum2 of this normal with a vector
+     * @param v is a vector with 3 components
+     * @return a new matrix
+     */
     public Mat3x3 changeCol2 (final Vector3 v){
         return new Mat3x3(
                             this.m11, v.x, this.m13,
                             this.m21, v.y, this.m23,
-                            this.m31, v.z, this.m33
-        );
+                            this.m31, v.z, this.m33);
     }
     
+    /**
+     * The method changes collum3 of this normal with a vector
+     * @param v is a vector with 3 components
+     * @return a new matrix
+     */
     public Mat3x3 changeCol3 (final Vector3 v){
         return new Mat3x3(
                             this.m11, this.m12, v.x,
                             this.m21, this.m22, v.y, 
-                            this.m31, this.m32, v.z 
-        );
+                            this.m31, this.m32, v.z);
     }
 
     @Override
