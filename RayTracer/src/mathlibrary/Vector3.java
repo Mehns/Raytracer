@@ -2,13 +2,10 @@
 package mathlibrary;
 
 /**
- *
+ * This class represents a vector in 3D space.
  * @author Christian Mehns
  */
 
-/**
- * This class represents a vector in 3D space.
- */
 public class Vector3 {
 
     /**
@@ -29,8 +26,9 @@ public class Vector3 {
     public final double magnitude;
 
     /**
-     * Constructs and initializes a vector
-     * calculates and sets the magnitude
+     * Constructor
+     * Constructs and initializes a vector with 3 components
+     * Calculates and sets the magnitude of this vactor.
      * @param x The X coordinate of this vector
      * @param y The Y coordinate of this vector
      * @param z The Z coordinate of this vector
@@ -43,71 +41,85 @@ public class Vector3 {
     }
     
     /**
-     * The method adds a vector to this vector
-     * @param v is a vector with three components
-     * @return a new vector
+     * The method adds a vector to this vector.
+     * @param v is a vector with 3 components
+     *      Must not be null.
+     * @return a new vector with 3 components
      */
     public Vector3 add(final Vector3 v){
+        if(v == null){
+            throw new IllegalArgumentException("The parameter " + v + " must not be null.");
+        }
         return new Vector3(this.x + v.x,
                            this.y + v.y,
-                           this.z + v.z
-        );
+                           this.z + v.z);
     }
     
     /**
      * The method adds a normal to this vector
-     * @param n is a normal with three coordinates
-     * @return a new vector
+     * @param n is a normal with 3 components
+     *      Must not be null.
+     * @return a new vector with 3 components
      */
     public Vector3 add(final Normal3 n){
+        if(n == null){
+            throw new IllegalArgumentException("The parameter " + n + " must not be null.");
+        }
         return new Vector3(
                         this.x + n.x,
                         this.y + n.y,
-                        this.z + n.z
-        );
+                        this.z + n.z);
     }
     
     /**
      * The method subtracts a normal-vector from this vector
-     * @param n is a normal with three coordinates
-     * @return a new vector
+     * @param n is a normal with 3 components
+     *      Must not be null.
+     * @return a new vector with 3 components
      */
     public Vector3 sub(final Normal3 n){
-        return new Vector3(
-                        this.x - n.x,
-                        this.y - n.y,
-                        this.z - n.z
-        );
+        if(n == null){
+            throw new IllegalArgumentException("The parameter " + n + " must not be null.");
+        }
+        return new Vector3( this.x - n.x,
+                            this.y - n.y,
+                            this.z - n.z);
     }
     
     /**
      * The method multiplicates a constant with this vector
      * @param c the constant that should be mulitplicated with the vector
-     * @return a new vector
+     * @return a new vector with 3 components
      */
     public Vector3 mul(final double c){
-        return new Vector3(
-                        this.x * c,
-                        this.y * c,
-                        this.z * c
-        );
+        return new Vector3( this.x * c,
+                            this.y * c,
+                            this.z * c);
     }
     
     /**
      * The method builds the dot product of this vector and another
      * @param v vector which dot product is build with
-     * @return the value of the dot product
+     *      Must not be null.
+     * @return the value of the dot product (double)
      */
     public double dot(final Vector3 v){
+        if(v == null){
+            throw new IllegalArgumentException("The parameter " + v + " must not be null.");
+        }
         return this.x * v.x + this.y * v.y + this.z * v.z;
     }
     
     /**
      * The method builds the dot product of this vector and a normal-vector
      * @param n normal which dot product is build with
-     * @return the value of the dot product
+     *      Must not be null.
+     * @return the value of the dot product (double)
      */
     public double dot(final Normal3 n){
+        if(n == null){
+            throw new IllegalArgumentException("The parameter " + n + " must not be null.");
+        }
         return this.x * n.x + this.y * n.y + this.z * n.z;
     }
     
@@ -128,11 +140,15 @@ public class Vector3 {
     }
     
     /**
-     * The method reflects a vector3 on a normal3
+     * The method reflects a vector on a normal
      * @param n the normal on which the vector is reflected
+     *      Must not be null.
      * @return the reflected new vector
      */
     public Vector3 reflectedOn(final Normal3 n){
+        if(n == null){
+            throw new IllegalArgumentException("The parameter " + n + " must not be null.");
+        }
         return new Vector3( 2 * this.dot(n) * n.x - this.x , 
                             2 * this.dot(n) * n.y - this.y , 
                             2 * this.dot(n) * n.z - this.z );
@@ -141,13 +157,16 @@ public class Vector3 {
     /**
      * The method builds the cross-product of this vector and another
      * @param v the vector which the cross-product is build with
-     * @return the cross-product as a new vector
+     *      Must not be null.
+     * @return the cross-product as a new vector with 3 components
      */
     public Vector3 x(final Vector3 v){
-        final double x = (this.y * v.z) - (this.z * v.y);
-        final double y = (this.z * v.x) - (this.x * v.z);
-        final double z = (this.x * v.y) - (this.y * v.x);
-        return new Vector3(x, y, z);
+        if(v == null){
+            throw new IllegalArgumentException("The parameter " + v + " must not be null.");
+        }
+        return new Vector3(this.y * v.z - this.z * v.y,
+                           this.z * v.x - this.x * v.z,
+                           this.x * v.y - this.y * v.x);
     }
 
     @Override

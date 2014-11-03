@@ -6,46 +6,67 @@
 package mathlibrary;
 
 /**
- *
+ * This class tests methods from:
+ * Mat3x3, 
+ * Normal3, 
+ * Vector3 and 
+ * Point3
  * @author Lena
  */
 public class Test {
+    /**
+     * normal parameters that where given in task
+     */
+    static final Normal3 n1 = new Normal3(1,2,3); 
+    static final Normal3 n2 = new Normal3(3,2,1);
+    static final Normal3 n3 = new Normal3(1,0,0);
+    static final Normal3 n4 = new Normal3(0,1,0);
+    static final Normal3 n5 = new Normal3(2,2,0);
     
     /**
+     * vector parameters that where given in task
+     */      
+    static final Vector3 v1 = new Vector3(1,0,0);
+    static final Vector3 v2 = new Vector3(0,1,0);
+    static final Vector3 v3 = new Vector3(4,3,2);
+    static final Vector3 v4 = new Vector3(1,1,1);
+    static final Vector3 v5 = new Vector3(8,8,8);
+    static final Vector3 v6 = new Vector3(3,2,1);
+    static final Vector3 v7 = new Vector3(-0.707,0.707,0);
+    static final Vector3 v8 = new Vector3(0.707,0.707,0);
+    static final Vector3 v9 = new Vector3(1,2,3);
+    static final Vector3 v10 = new Vector3(3,2,1);
+    
+    /**
+     * point parameters that where given in task
+     */    
+    static final Point3 p1 = new Point3(1,1,1);
+    static final Point3 p2 = new Point3(2,2,0);
+    static final Point3 p3 = new Point3(3,2,1);
+    
+    /**
+     * 3x3 matrix parameters that where given in task
+     */    
+    static final Mat3x3 m1 = new Mat3x3(1,0,0,
+                                        0,1,0,
+                                        0,0,1);
+    static final Mat3x3 m2 = new Mat3x3(1,2,3,
+                                        4,5,6,
+                                        7,8,9);
+    static final Mat3x3 m3 = new Mat3x3(0,0,1,
+                                        0,1,0,
+                                        1,0,0);
+    
+    /**
+     * main method tests methods from: 
+     * Mat3x3, 
+     * Normal3, 
+     * Vector3 and 
+     * Point3
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        final Normal3 n1 = new Normal3(1,2,3); 
-        final Normal3 n2 = new Normal3(3,2,1);
-        final Normal3 n3 = new Normal3(1,0,0);
-        final Normal3 n4 = new Normal3(0,1,0);
-        final Normal3 n5 = new Normal3(2,2,0);
-        
-        final Vector3 v1 = new Vector3(1,0,0);
-        final Vector3 v2 = new Vector3(0,1,0);
-        final Vector3 v3 = new Vector3(4,3,2);
-        final Vector3 v4 = new Vector3(1,1,1);
-        final Vector3 v5 = new Vector3(8,8,8);
-        final Vector3 v6 = new Vector3(3,2,1);
-        final Vector3 v7 = new Vector3(-0.707,0.707,0);
-        final Vector3 v8 = new Vector3(0.707,0.707,0);
-        final Vector3 v9 = new Vector3(1,2,3);
-        final Vector3 v10 = new Vector3(3,2,1);
-        
-        final Point3 p1 = new Point3(1,1,1);
-        final Point3 p2 = new Point3(2,2,0);
-        final Point3 p3 = new Point3(3,2,1);
-        
-        final Mat3x3 m1 = new Mat3x3(1,0,0,
-                               0,1,0,
-                               0,0,1);
-        final Mat3x3 m2 = new Mat3x3(1,2,3,
-                               4,5,6,
-                               7,8,9);
-        final Mat3x3 m3 = new Mat3x3(0,0,1,
-                               0,1,0,
-                               1,0,0);
-        
+
         System.out.println("START-----------------------------------------------------------------------------");
         System.out.println("task 1: \ntest Normal3 mul(double n): " + n1 + "* 0.5 = " + n1.mul(0.5));
         System.out.println("-----------------------------------------------------------------------------");

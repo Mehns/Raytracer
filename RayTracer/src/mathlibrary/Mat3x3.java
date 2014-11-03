@@ -6,7 +6,7 @@
 package mathlibrary;
 
 /**
- *
+ * This class represents a 3x3 matrix with 9 components.
  * @author Christian
  */
 public class Mat3x3 {
@@ -52,8 +52,9 @@ public class Mat3x3 {
     public final double determinant;
 
     /**
-     * Constructs and initializes a matrix with 9 double components
-     * calculate and sets the determinante
+     * Constructor
+     * Constructs and initializes a 3x3 matrix with 9 double components.
+     * Calculates and sets the determinante of the matrix.
      * @param m11 The m11 component of this matrix
      * @param m12 The m12 component of this matrix
      * @param m13 The m13 component of this matrix
@@ -84,11 +85,15 @@ public class Mat3x3 {
     }
     
     /**
-     * The method multiplies this matrix with another matrix
-     * @param m is a matrix with 9 components
-     * @return a new matrix
+     * The method multiplies this 3x3 matrix with another 3x3 matrix
+     * @param m is a 3x3 matrix with 9 components
+     *      Must not be null.
+     * @return a new 3x3 matrix
      */
     public Mat3x3 mul (final Mat3x3 m){
+        if(m == null){
+            throw new IllegalArgumentException("The parameter " + m + " must not be null.");
+        }
         return new Mat3x3(
                         this.m11 * m.m11 + this.m12 * m.m21 + this.m13 * m.m31,
                         this.m11 * m.m12 + this.m12 * m.m22 + this.m13 * m.m32,
@@ -102,11 +107,15 @@ public class Mat3x3 {
     }
     
     /**
-     * The method multiplies this normal with a vector
+     * The method multiplies this 3x3 matrix with a vector
      * @param m is a vector with 3 components
-     * @return a new vektor
+     *      Must not be null.
+     * @return a new vector with 3 components
      */
     public Vector3 mul (final Vector3 m){
+        if(m == null){
+            throw new IllegalArgumentException("The parameter " + m + " must not be null.");
+        }
         return new Vector3(
                             this.m11 * m.x + this.m12 * m.y + this.m13 * m.z,
                             this.m21 * m.x + this.m22 * m.y + this.m23 * m.z,
@@ -114,11 +123,15 @@ public class Mat3x3 {
     }
     
     /**
-     * The method multiplies this normal with a point
+     * The method multiplies this 3x3 matrix with a point
      * @param p is a point with 3 coordinates
-     * @return a new point
+     *      Must not be null.
+     * @return a new point with 3 coordinates
      */
     public Point3 mul (final Point3 p){
+        if(p == null){
+            throw new IllegalArgumentException("The parameter " + p + " must not be null.");
+        }
         return new Point3(
                             this.m11 * p.x + this.m12 * p.y + this.m13 * p.z,
                             this.m21 * p.x + this.m22 * p.y + this.m23 * p.z,
@@ -126,11 +139,15 @@ public class Mat3x3 {
     }
     
     /**
-     * The method changes collum1 of this normal with a vector
+     * The method changes collum1 of this 3x3 matrix with a vector
      * @param v is a vector with 3 components
-     * @return a new matrix
+     *      Must not be null.
+     * @return a new 3x3 matrix
      */
     public Mat3x3 changeCol1 (final Vector3 v){
+        if(v == null){
+            throw new IllegalArgumentException("The parameter " + v + " must not be null.");
+        }
         return new Mat3x3(
                             v.x, this.m12, this.m13,
                             v.y, this.m22, this.m23,
@@ -138,11 +155,15 @@ public class Mat3x3 {
     }
 
     /**
-     * The method changes collum2 of this normal with a vector
+     * The method changes collum2 of this 3x3 matrix with a vector
      * @param v is a vector with 3 components
-     * @return a new matrix
+     *      Must not be null.
+     * @return a new 3x3 matrix
      */
     public Mat3x3 changeCol2 (final Vector3 v){
+        if(v == null){
+            throw new IllegalArgumentException("The parameter " + v + " must not be null.");
+        }
         return new Mat3x3(
                             this.m11, v.x, this.m13,
                             this.m21, v.y, this.m23,
@@ -150,11 +171,14 @@ public class Mat3x3 {
     }
     
     /**
-     * The method changes collum3 of this normal with a vector
+     * The method changes collum3 of this 3x3 matrix with a vector
      * @param v is a vector with 3 components
-     * @return a new matrix
+     * @return a new 3x3 matrix
      */
     public Mat3x3 changeCol3 (final Vector3 v){
+        if(v == null){
+            throw new IllegalArgumentException("The parameter " + v + " must not be null.");
+        }
         return new Mat3x3(
                             this.m11, this.m12, v.x,
                             this.m21, this.m22, v.y, 

@@ -6,7 +6,7 @@
 package mathlibrary;
 
 /**
- *
+ * This class represents a normal with 3 components.
  * @author Christian
  */
 public class Normal3 {
@@ -24,7 +24,8 @@ public class Normal3 {
     public final double z;
 
     /**
-     * Constructs and initializes a normal with 3 double components
+     * Constructor
+     * constructs and initializes a normal with 3 double components
      * 
      * @param x The X component of this normal
      * @param y The Y component of this normal
@@ -48,18 +49,26 @@ public class Normal3 {
     /**
      * The method adds a normal to this normal
      * @param n is a normal with 3 components
-     * @return a new Normal
+     *      Must not be null.
+     * @return a new Normal, never returns null.
      */
     public Normal3 add(final Normal3 n) {
+        if(n == null){
+            throw new IllegalArgumentException("The parameter " + n + " must not be null.");
+        }
         return new Normal3(this.x + n.x, this.y + n.y, this.z + n.z);
     }
     
     /**
-     * The method builds the dot product of this normal and a vector
+     * The method builds the dot product of this normal and a vector.
      * @param v vector which dot product is build with
+     *      Must not be null.
      * @return the value of the dot product (double)
      */
     public double dot(Vector3 v){
+        if(v == null){
+            throw new IllegalArgumentException("The parameter " + v + " must not be null.");
+        }
         return this.x * v.x + this.y * v.y + this.z * v.z;
     }
 

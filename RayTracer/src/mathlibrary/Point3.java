@@ -2,13 +2,10 @@
 package mathlibrary;
 
 /**
- *
+ * This class represents a point with 3 coordinates.
  * @author Christian Mehns
  */
 
-/**
- * This class represents a point in 3D space.
- */
 public class Point3 {
 
     /**
@@ -25,6 +22,7 @@ public class Point3 {
     public final double z;
     
     /**
+     * Constructor
      * Constructs and initializes a point at the specified (x,y,z) location in the coordinate space
      * 
      * @param x The X coordinate of this point
@@ -39,10 +37,14 @@ public class Point3 {
     
     /**
      * The method subtracts a point from this point
-     * @param p is a point with three coordinates
-     * @return a new Vector
+     * @param p is a point with 3 coordinates
+     *      Must not be null.
+     * @return a new Vector wit 3 components
      */
     public Vector3 sub(final Point3 p){
+        if(p == null){
+            throw new IllegalArgumentException("The parameter " + p + " must not be null.");
+        }
         return new Vector3( x-p.x,
                             y-p.y,
                             z-p.z);
@@ -50,10 +52,14 @@ public class Point3 {
     
     /**
      * The method subtracts a vector from this point
-     * @param v is a vector with three coordinates
-     * @return a new point
+     * @param v is a vector with 3 components
+     *      Must not be null.
+     * @return a new point with 3 coordinates
      */
     public Point3 sub(final Vector3 v){
+        if(v == null){
+            throw new IllegalArgumentException("The parameter " + v + " must not be null.");
+        }
         return new Point3( x-v.x,
                            y-v.y,
                            z-v.z);
@@ -61,10 +67,14 @@ public class Point3 {
     
     /**
      * The method adds a vector to this point
-     * @param v is a vector with three coordinates
-     * @return a new point
+     * @param v is a vector with 3 components
+     *      Must not be null.
+     * @return a new point with 3 coordinates
      */
     public Point3 add(final Vector3 v){
+        if(v == null){
+            throw new IllegalArgumentException("The parameter " + v + " must not be null.");
+        }
         return new Point3( x+v.x,
                            y+v.y,
                            z+v.z);
