@@ -44,8 +44,8 @@ public class Point3 {
      */
     public Vector3 sub(final Point3 p){
         return new Vector3( x-p.x,
-                        y-p.y,
-                        z-p.z);
+                            y-p.y,
+                            z-p.z);
     }
     
     /**

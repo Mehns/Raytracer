@@ -99,7 +99,7 @@ public class Vector3 {
      * @return the value of the dot product
      */
     public double dot(final Vector3 v){
-        return this.x * v.x + this.x * v.x + this.x * v.x;
+        return this.x * v.x + this.y * v.y + this.z * v.z;
     }
     
     /**
@@ -108,7 +108,7 @@ public class Vector3 {
      * @return the value of the dot product
      */
     public double dot(final Normal3 n){
-        return this.x * n.x + this.x * n.x + this.x * n.x;
+        return this.x * n.x + this.y * n.y + this.z * n.z;
     }
     
     /**

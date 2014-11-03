@@ -46,7 +46,7 @@ public class Mat3x3 {
                         this.m11 * m.m13 + this.m12 * m.m23 + this.m13 * m.m33,
                         this.m21 * m.m11 + this.m22 * m.m21 + this.m23 * m.m31,
                         this.m21 * m.m12 + this.m22 * m.m22 + this.m23 * m.m32,
-                        this.m21 * m.m12 + this.m22 * m.m23 + this.m23 * m.m33,
+                        this.m21 * m.m13 + this.m22 * m.m23 + this.m23 * m.m33,
                         this.m31 * m.m11 + this.m32 * m.m21 + this.m33 * m.m31,
                         this.m31 * m.m12 + this.m32 * m.m22 + this.m33 * m.m32,
                         this.m31 * m.m13 + this.m32 * m.m23 + this.m33 * m.m33

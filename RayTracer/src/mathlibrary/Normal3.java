@@ -29,7 +29,7 @@ public class Normal3 {
     }
     
     public double dot(Vector3 v){
-        return this.x * v.x + this.x * v.x + this.x * v.x;
+        return this.x * v.x + this.y * v.y + this.z * v.z;
     }
 
     @Override
