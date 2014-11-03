@@ -34,9 +34,9 @@ public class ImageSaver extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         // adds menu with save button
-        JMenuBar menu = new JMenuBar();
-        JMenu file = new JMenu("File");
-        JMenuItem saveItem = new JMenuItem("Save");
+        final JMenuBar menu = new JMenuBar();
+        final JMenu file = new JMenu("File");
+        final JMenuItem saveItem = new JMenuItem("Save");
         saveItem.addActionListener(this);
         file.add(saveItem);
         menu.add(file);
@@ -50,15 +50,15 @@ public class ImageSaver extends JFrame implements ActionListener {
 
     @Override
     // opens a dialog to let user save the image, checks if file is jpg or png
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
         
         if (e.getActionCommand().equals("Save")) {
             
-            JFileChooser fileDialog = new JFileChooser();
-            int returnValue = fileDialog.showSaveDialog(this);
+            final JFileChooser fileDialog = new JFileChooser();
+            final int returnValue = fileDialog.showSaveDialog(this);
             
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-                File saveFile = fileDialog.getSelectedFile();
+                final File saveFile = fileDialog.getSelectedFile();
                 
                 String savingImage = saveFile.getName().toLowerCase();
                 
