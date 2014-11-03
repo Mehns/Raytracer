@@ -10,9 +10,11 @@ import static java.awt.image.ImageObserver.WIDTH;
 import java.awt.image.WritableRaster;
 
 /**
- *
+ * Canvas that draws a red diagonal line on black background
  * @author Chrstian Mehns
  */
+
+
 public class ImageCanvas extends Canvas {
     public BufferedImage image;
     
@@ -23,14 +25,17 @@ public class ImageCanvas extends Canvas {
         final WritableRaster raster = image.getRaster();
         final ColorModel colorModel = image.getColorModel();
         
+        // set colors with presets of class "Color"
         final int black = Color.black.getRGB();
         final int red = Color.red.getRGB();
         
         
         graphic.drawImage(image, WIDTH, WIDTH, this);
         
+        // fills raster with black Background
         raster.setDataElements(0, 0, 1, 1, colorModel.getDataElements(black, null));
         
+        // draw red diagonal line
         for (int w = 0; w < image.getWidth(); w++) {
             for (int h = 0; h < image.getHeight(); h++) {
                 if (w == h) {
