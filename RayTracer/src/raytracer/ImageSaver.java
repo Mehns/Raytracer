@@ -17,10 +17,10 @@ import javax.swing.WindowConstants;
  * @author Christian Mehns
  */
 public class ImageSaver extends JFrame implements ActionListener {
-    private final int WIDTH = 640;
-    private final int HEIGHT = 640;
+    private final int WINDOW_WIDTH = 640;
+    private final int WINDOW_HEIGHT = 480;
     
-    private ImageCanvas imageCanvas;
+    private final ImageCanvas imageCanvas;
          
     /**
      * creates a JFrame that draws a red line on black background 
@@ -30,7 +30,7 @@ public class ImageSaver extends JFrame implements ActionListener {
         super("Image Saver");
         
         // prepares window
-        this.setSize(WIDTH, HEIGHT);
+        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         // adds menu with save button
