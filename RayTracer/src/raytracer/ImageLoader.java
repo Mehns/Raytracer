@@ -26,15 +26,15 @@ public class ImageLoader extends JFrame{
         BufferedImage image = null;
         
         // FileChooser with Filter for jpg, png
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "jpeg", "png");        
+        final JFileChooser chooser = new JFileChooser();
+        final FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "jpeg", "png");        
         chooser.setFileFilter(filter);
         chooser.setMultiSelectionEnabled(false);
         
         // loads Image if user has choosen the right format
-        int returnValue = chooser.showOpenDialog(null);            
+        final int returnValue = chooser.showOpenDialog(null);            
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = chooser.getSelectedFile();
+            final File file = chooser.getSelectedFile();
             this.setTitle(chooser.getName(file));
             
             try {
@@ -45,8 +45,8 @@ public class ImageLoader extends JFrame{
         }        
         
         // fills the window with the image
-        ImageIcon icon = new ImageIcon(image);        
-        JLabel label = new JLabel(icon);
+        final ImageIcon icon = new ImageIcon(image);        
+        final JLabel label = new JLabel(icon);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(icon.getIconWidth(), icon.getIconHeight());

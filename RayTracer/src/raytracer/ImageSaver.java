@@ -17,10 +17,10 @@ import javax.swing.WindowConstants;
  * @author Christian Mehns
  */
 public class ImageSaver extends JFrame implements ActionListener {
-    private final int WIDTH = 640;
-    private final int HEIGHT = 640;
+    private final int WINDOW_WIDTH = 640;
+    private final int WINDOW_HEIGHT = 480;
     
-    private ImageCanvas imageCanvas;
+    private final ImageCanvas imageCanvas;
          
     /**
      * creates a JFrame that draws a red line on black background 
@@ -30,13 +30,13 @@ public class ImageSaver extends JFrame implements ActionListener {
         super("Image Saver");
         
         // prepares window
-        this.setSize(WIDTH, HEIGHT);
+        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         // adds menu with save button
-        JMenuBar menu = new JMenuBar();
-        JMenu file = new JMenu("File");
-        JMenuItem saveItem = new JMenuItem("Save");
+        final JMenuBar menu = new JMenuBar();
+        final JMenu file = new JMenu("File");
+        final JMenuItem saveItem = new JMenuItem("Save");
         saveItem.addActionListener(this);
         file.add(saveItem);
         menu.add(file);
@@ -50,15 +50,15 @@ public class ImageSaver extends JFrame implements ActionListener {
 
     @Override
     // opens a dialog to let user save the image, checks if file is jpg or png
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
         
         if (e.getActionCommand().equals("Save")) {
             
-            JFileChooser fileDialog = new JFileChooser();
-            int returnValue = fileDialog.showSaveDialog(this);
+            final JFileChooser fileDialog = new JFileChooser();
+            final int returnValue = fileDialog.showSaveDialog(this);
             
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-                File saveFile = fileDialog.getSelectedFile();
+                final File saveFile = fileDialog.getSelectedFile();
                 
                 String savingImage = saveFile.getName().toLowerCase();
                 
