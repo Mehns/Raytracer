@@ -48,7 +48,7 @@ public class Ray {
      * @return Distance
      */
     public double tOf(Point3 p){
-        // (p - o) / d
+        // t = (p - o) / d
         return p.sub(o).magnitude / this.d.magnitude;
     }
 }

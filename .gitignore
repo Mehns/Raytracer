@@ -1,6 +1,7 @@
 # NetBeans specific #
 nbproject/private/*
 private.properties
+private.xml
 build/
 nbbuild/
 dist/
