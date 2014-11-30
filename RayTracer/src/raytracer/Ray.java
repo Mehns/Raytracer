@@ -16,11 +16,11 @@ public class Ray {
     /** 
      * The origin of the ray
      */
-    private final  Point3 o;
+    public final  Point3 o;
     /** 
      * The direction of the ray
      */
-    private final Vector3 d;
+    public final Vector3 d;
     /**
      * Construcotr
      * Contructs a ray

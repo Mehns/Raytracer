@@ -66,7 +66,7 @@ public class Test {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        
         System.out.println("START-----------------------------------------------------------------------------");
         System.out.println("task 1: \ntest Normal3 mul(double n): " + n1 + "* 0.5 = " + n1.mul(0.5));
         System.out.println("-----------------------------------------------------------------------------");
