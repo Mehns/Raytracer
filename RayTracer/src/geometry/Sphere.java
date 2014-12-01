@@ -6,9 +6,7 @@
 package geometry;
 
 import color.Color;
-import mathlibrary.Normal3;
 import mathlibrary.Point3;
-import mathlibrary.Vector3;
 import raytracer.Ray;
 
 /**

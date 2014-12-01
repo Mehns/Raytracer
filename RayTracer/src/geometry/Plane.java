@@ -9,7 +9,6 @@ import color.Color;
 import java.util.Objects;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
-import mathlibrary.Vector3;
 import raytracer.Ray;
 
 /**
@@ -50,6 +49,9 @@ public class Plane extends Geometry{
         double divisor = r.d.dot(n);
         if(divisor != 0.0){
             double t = a.sub(r.o).dot(n)/divisor;
+            if (t < 0.0001) {
+                return null;
+            }
             return new Hit(t,r,this);
         }
         return null;

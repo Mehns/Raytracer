@@ -1,13 +1,18 @@
 
 package raytracer;
 
+import camera.Camera;
 import java.awt.Canvas;
-import java.awt.Color;
+import color.Color;
+import geometry.Hit;
+
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.awt.image.WritableRaster;
+import world.World;
 
 /**
  * Canvas that draws a red diagonal line on black background
@@ -17,32 +22,61 @@ import java.awt.image.WritableRaster;
 
 public class ImageCanvas extends Canvas {
     public BufferedImage image;
+    World world; 
+    Camera cam;
+    
+    public int imageWidth;
+    public int imageHeight;
+
+    
+    
+    public ImageCanvas(World world, Camera cam){
+        this.world = world;
+        this.cam = cam;
+        
+        imageWidth = RayTracer.WINDOW_WIDTH;
+        imageHeight = RayTracer.WINDOW_HEIGHT;
+
+    }
     
     @Override
     public void paint (final Graphics graphic){
-        super.paint(graphic);
-        this.image = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
+        System.out.println("paint my picture");
+        this.image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
         final WritableRaster raster = image.getRaster();
         final ColorModel colorModel = image.getColorModel();
         
-        // set colors with presets of class "Color"
-        final int black = Color.black.getRGB();
-        final int red = Color.red.getRGB();
         
+        Color backColor = world.backgroundColor;
         
-        graphic.drawImage(image, WIDTH, WIDTH, this);
-        
-        // fills raster with black Background
-        raster.setDataElements(0, 0, 1, 1, colorModel.getDataElements(black, null));
-        
-        // draw red diagonal line
-        for (int w = 0; w < image.getWidth(); w++) {
-            for (int h = 0; h < image.getHeight(); h++) {
-                if (w == h) {
-                raster.setDataElements(w, h, colorModel.getDataElements(red, null));
-                }   
+        // draw 
+        for (int y = 0; y < image.getHeight(); y++) {
+            for (int x = 0; x < image.getWidth(); x++) {
+                
+                Ray ray = cam.rayFor(image.getWidth(), image.getHeight(), x, y);
+                Hit hit = world.hit(ray);
+                
+                Color color;
+                
+                
+                if (hit == null || hit.geo == null) {
+                    color = backColor;
+                } else {
+                    color = hit.geo.color;
+                }
+
+                java.awt.Color convertColor = new java.awt.Color((float)color.r, 
+                                                               (float)color.g, 
+                                                               (float)color.b);
+                
+                double[] colorChannel = {color.r, color.g, color.b};
+                
+                raster.setDataElements(image.getWidth() -1 - x, image.getHeight() -1 - y, colorModel.getDataElements(convertColor.getRGB(), null));
+                                
             }
         }
-        graphic.drawImage(image, 0, 0, Color.BLACK, this);        
+
+        graphic.drawImage(image, 0, 0, this);        
     }
+
 }
