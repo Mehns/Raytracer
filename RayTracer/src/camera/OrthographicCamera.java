@@ -33,7 +33,7 @@ public class OrthographicCamera extends Camera{
         // d = -w
         Vector3 d = this.w.mul(-1);
         
-        // o = e + s((x-(w-1/2)) / w-1)*u 
+        // o = e + a*s((x-(w-1/2)) / w-1)*u 
         //       + s((y-(h-1/2)) / h-1)*v
         double w1 = (double) w;
         double h1 = (double) h;

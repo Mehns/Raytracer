@@ -17,12 +17,15 @@ import mathlibrary.Point3;
 import mathlibrary.Vector3;
 
 /**
- *
+ * Testclass for raytracer:
+ * creates 4 Frames with given images
  * @author Lena
  */
 public class TestRay {
     
-    
+    /**
+     * creates 4 Frames with given geometries and cameras
+     */
     public TestRay(){
         //Test1
         Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new Color(0,1,0));
@@ -66,7 +69,12 @@ public class TestRay {
 
     }
     
+    /**
+     * starts Test
+     * @param args 
+     */
     public static void main(String[] args) {
         new TestRay();
     }
+    
 }

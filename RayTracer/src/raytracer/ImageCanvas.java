@@ -10,27 +10,48 @@ import geometry.Hit;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
-import static java.awt.image.ImageObserver.WIDTH;
 import java.awt.image.WritableRaster;
+import java.util.Objects;
 import world.World;
 
 /**
- * Canvas that draws a red diagonal line on black background
+ * Canvas that draws world with geometry from camera perspective
  * @author Chrstian Mehns
  */
-
-
 public class ImageCanvas extends Canvas {
+    
+    /**
+     * data of our image
+     */
     public BufferedImage image;
+    
+    /**
+     * world for image
+     */
     World world; 
+    
+    /**
+     * camera for image
+     */
     Camera cam;
     
+    /**
+     * width of image
+     */
     public int imageWidth;
+    
+    /**
+     * height of image
+     */
     public int imageHeight;
 
     
-    
-    public ImageCanvas(World world, Camera cam){
+    /**
+     * constructs new ImageCanvas
+     * @param world for image
+     * @param cam for image
+     */
+    public ImageCanvas(final World world, final Camera cam){
         this.world = world;
         this.cam = cam;
         
@@ -69,14 +90,55 @@ public class ImageCanvas extends Canvas {
                                                                (float)color.g, 
                                                                (float)color.b);
                 
-                double[] colorChannel = {color.r, color.g, color.b};
-                
                 raster.setDataElements(x, image.getHeight() -1 - y, colorModel.getDataElements(convertColor.getRGB(), null));
                                 
             }
         }
 
         graphic.drawImage(image, 0, 0, this);        
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.image);
+        hash = 29 * hash + Objects.hashCode(this.world);
+        hash = 29 * hash + Objects.hashCode(this.cam);
+        hash = 29 * hash + this.imageWidth;
+        hash = 29 * hash + this.imageHeight;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ImageCanvas other = (ImageCanvas) obj;
+        if (!Objects.equals(this.image, other.image)) {
+            return false;
+        }
+        if (!Objects.equals(this.world, other.world)) {
+            return false;
+        }
+        if (!Objects.equals(this.cam, other.cam)) {
+            return false;
+        }
+        if (this.imageWidth != other.imageWidth) {
+            return false;
+        }
+        if (this.imageHeight != other.imageHeight) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ImageCanvas{" + "image=" + image + ", world=" + world + ", cam=" + cam + ", imageWidth=" + imageWidth + ", imageHeight=" + imageHeight + '}';
     }
 
 }
