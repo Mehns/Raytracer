@@ -40,7 +40,7 @@ public class OrthographicCamera extends Camera{
         double x1 = (double) x;
         double y1 = (double) y;
         
-        double a = w/h;
+        double a = w1/h1;
         
         double calc1 = a*this.s * ((x1 - ((w1-1)/2))/(w1-1));
         double calc2 =   this.s * ((y1 - ((h1-1)/2))/(h1-1));
