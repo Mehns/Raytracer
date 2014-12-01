@@ -13,7 +13,7 @@ import mathlibrary.Vector3;
 import raytracer.Ray;
 
 /**
- *
+ * represents a plane
  * @author Lena
  */
 public class Plane extends Geometry{

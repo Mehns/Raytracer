@@ -12,7 +12,7 @@ import mathlibrary.Vector3;
 import raytracer.Ray;
 
 /**
- *
+ * represents a sphere
  * @author Lena
  */
 public class Sphere extends Geometry{

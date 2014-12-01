@@ -9,10 +9,10 @@ import java.util.Objects;
 import raytracer.Ray;
 
 /**
- *
+ * represents a hit
  * @author Lena
  */
-class Hit {
+public class Hit {
     
     /**
      * where ray and geometry hit
