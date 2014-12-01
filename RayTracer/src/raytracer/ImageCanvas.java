@@ -71,7 +71,7 @@ public class ImageCanvas extends Canvas {
                 
                 double[] colorChannel = {color.r, color.g, color.b};
                 
-                raster.setDataElements(image.getWidth() -1 - x, image.getHeight() -1 - y, colorModel.getDataElements(convertColor.getRGB(), null));
+                raster.setDataElements(x, image.getHeight() -1 - y, colorModel.getDataElements(convertColor.getRGB(), null));
                                 
             }
         }
