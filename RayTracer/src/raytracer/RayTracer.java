@@ -48,19 +48,19 @@ public class RayTracer extends JFrame{
         setVisible(true); 
     }
     
-    /**
-     * creates a ray for every pixel in Frame and looks for hits
-     * @param world stores geometries
-     * @param cam for ray
-     */
-    public void draw(final World world, final Camera cam){
-        for (int w = 0; w < WINDOW_WIDTH; w++) {
-            for (int h = 0; h < WINDOW_HEIGHT; h++) {
-                Ray ray = cam.rayFor(WINDOW_WIDTH, WINDOW_HEIGHT, w, h);
-                world.hit(ray);
-            }
-        }
-    }
+//    /**
+//     * creates a ray for every pixel in Frame and looks for hits
+//     * @param world stores geometries
+//     * @param cam for ray
+//     */
+//    public void draw(final World world, final Camera cam){
+//        for (int w = 0; w < WINDOW_WIDTH; w++) {
+//            for (int h = 0; h < WINDOW_HEIGHT; h++) {
+//                Ray ray = cam.rayFor(WINDOW_WIDTH, WINDOW_HEIGHT, w, h);
+//                world.hit(ray);
+//            }
+//        }
+//    }
 
     @Override
     public String toString() {

@@ -43,7 +43,7 @@ public class ImageSaver extends JFrame implements ActionListener {
         this.setJMenuBar(menu);
         
         // adds the canvas with the diagonal to this window and shows it
-        this.imageCanvas = new ImageCanvas();        
+        this.imageCanvas = new ImageCanvas(null, null);        
         this.add(this.imageCanvas);        
         setVisible(true);        
     }
