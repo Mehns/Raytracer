@@ -1,30 +1,44 @@
-package licht;
+package light;
 
 import color.Color;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
 
 /**
- * represents a pointlight
+ *
  * @author Lena
  */
-public class PointLight extends Light{
+public class SpotLight extends Light{
     
     /**
      * 
      */
     public final Point3 position;
+    
+    /**
+     * 
+     */
+    public final Vector3 direction;
+    
+    /**
+     * 
+     */
+    public final double halfAngle;
 
     /**
      * 
      * @param position
+     * @param direction
+     * @param halfAngle
      * @param color 
      */
-    public PointLight(final Point3 position, final Color color) {
+    public SpotLight(Point3 position, Vector3 direction, double halfAngle, Color color) {
         super(color);
         this.position = position;
+        this.direction = direction;
+        this.halfAngle = halfAngle;
     }
-    
+
     @Override
     public boolean illuminates(Point3 point) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -32,7 +46,8 @@ public class PointLight extends Light{
 
     @Override
     public Vector3 directionFrom(Point3 point) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return position.sub(point);
     }
+    
     
 }

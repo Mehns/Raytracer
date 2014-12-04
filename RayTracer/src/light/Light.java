@@ -1,4 +1,4 @@
-package licht;
+package light;
 
 import color.Color;
 import mathlibrary.Point3;

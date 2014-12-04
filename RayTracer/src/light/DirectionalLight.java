@@ -1,4 +1,4 @@
-package licht;
+package light;
 
 import color.Color;
 import mathlibrary.Point3;
@@ -32,7 +32,7 @@ public class DirectionalLight extends Light{
 
     @Override
     public Vector3 directionFrom(Point3 point) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return direction.mul(-1);
     }
     
 }
