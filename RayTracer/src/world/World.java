@@ -16,7 +16,17 @@ public class World {
     /**
      * list of all geometries
      */
-    public final ArrayList<Geometry> list;
+    public final ArrayList<Geometry> geoList;
+    
+    /**
+     * list of all lights
+     */
+    public final ArrayList<Light> lightList;
+    
+    /**
+     * Color of ambient light
+     */
+    public final Color ambientColor;
     
     /**
      * background color if no hit with ray
@@ -27,8 +37,11 @@ public class World {
      * Constructs a new world
      * @param list lists all geometries in world
      */
-    public World(final ArrayList<Geometry> list) {
-        this.list = list;
+    public World(final ArrayList<Geometry> geometry, final ArrayList<Light> lights,
+                    final Color ambientColor) {
+        this.lightList = lights;
+        this.geoList = geometry;
+        this.ambientColor = ambientColor;
         this.backgroundColor = new Color(0,0,0);
     }
     
@@ -40,7 +53,7 @@ public class World {
     public Hit hit(final Ray r) {
         Hit hit = null;
         ArrayList<Hit> hitList = new ArrayList<>();
-        for (Geometry geometry: list){
+        for (Geometry geometry: geoList){
             hit = geometry.hit(r);
             if(hit!=null){
                 hitList.add(hit);
@@ -59,7 +72,7 @@ public class World {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.list);
+        hash = 79 * hash + Objects.hashCode(this.geoList);
         hash = 79 * hash + Objects.hashCode(this.backgroundColor);
         return hash;
     }
@@ -73,7 +86,7 @@ public class World {
             return false;
         }
         final World other = (World) obj;
-        if (!Objects.equals(this.list, other.list)) {
+        if (!Objects.equals(this.geoList, other.geoList)) {
             return false;
         }
         if (!Objects.equals(this.backgroundColor, other.backgroundColor)) {
@@ -84,7 +97,7 @@ public class World {
 
     @Override
     public String toString() {
-        return "World{" + "list=" + list + ", backgroundColor=" + backgroundColor + '}';
+        return "World{" + "list=" + geoList + ", backgroundColor=" + backgroundColor + '}';
     }
     
 }
