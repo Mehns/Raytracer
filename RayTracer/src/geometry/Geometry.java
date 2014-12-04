@@ -1,6 +1,8 @@
 package geometry;
 
 import color.Color;
+import material.Material;
+import material.SingleColorMaterial;
 import raytracer.Ray;
 
 /**
@@ -10,16 +12,28 @@ import raytracer.Ray;
 public abstract class Geometry {
     
     /**
-     * color component of geometry
+     * material component of geometry
      */
-    public final Color color;
+    public final Material material;
+    
+    public static final Material BASE_MATERIAL = new SingleColorMaterial(
+                                                        new Color(0.5,0.5,0.5));
     
     /**
      * Constructor of class Geometry
-     * @param color defines the color of geometry
+     * @param material defines the material of geometry
      */
-    public Geometry(final Color color) {
-        this.color = color;
+    public Geometry() {
+        this.material = BASE_MATERIAL;
+    }
+    
+    
+    /**
+     * Constructor of class Geometry
+     * @param material defines the material of geometry
+     */
+    public Geometry(final Material material) {
+        this.material = material;
     }
     
     /**
