@@ -4,6 +4,7 @@ package raytracer;
 import camera.Camera;
 import java.awt.Canvas;
 import color.Color;
+import geometry.Geometry;
 import geometry.Hit;
 
 
@@ -76,14 +77,13 @@ public class ImageCanvas extends Canvas {
                 
                 Ray ray = cam.rayFor(image.getWidth(), image.getHeight(), x, y);
                 Hit hit = world.hit(ray);
-                
                 Color color;
                 
                 
                 if (hit == null || hit.geo == null) {
                     color = backColor;
                 } else {
-                    color = hit.geo.color;
+                    color = hit.geo.material.colorFor(hit,world);
                 }
 
                 java.awt.Color convertColor = new java.awt.Color((float)color.r, 
