@@ -1,6 +1,7 @@
 package geometry;
 
 import color.Color;
+import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import raytracer.Ray;
 
@@ -53,7 +54,8 @@ public class Sphere extends Geometry{
             if(t < 0.0){
                 t = Math.max(x1, x2);
             }
-            return new Hit(t,r,this);
+            Normal3 normal = r.at(t).sub(this.c).normalized().asNormal();
+            return new Hit(t,r,this,normal);
         }        
         return null;
     }

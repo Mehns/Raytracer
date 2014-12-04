@@ -1,6 +1,7 @@
 package geometry;
 
 import java.util.Objects;
+import mathlibrary.Normal3;
 import raytracer.Ray;
 
 /**
@@ -23,6 +24,11 @@ public class Hit {
      * Geometry that hits ray
      */
     public final Geometry geo;
+    
+    /**
+     * Normal of the hit on geometry
+     */
+    public final Normal3 normal;
 
     /**
      * Constructor of class Hit
@@ -30,12 +36,16 @@ public class Hit {
      * @param t where ray and geometry hit
      * @param ray Ray that hits geometry
      * @param geo Geometry that hits ray
+     * @param normal Normal of the hit on the geometry
      */
-    public Hit(final double t, final Ray ray, final Geometry geo) {
+    public Hit(final double t, final Ray ray, final Geometry geo, final Normal3 normal) {
         this.t = t;
         this.ray = ray;
         this.geo = geo;
+        this.normal = normal;
     }
+    
+
 
     @Override
     public String toString() {

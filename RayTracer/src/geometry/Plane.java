@@ -47,7 +47,7 @@ public class Plane extends Geometry{
             if (t < 0.0001) {
                 return null;
             }
-            return new Hit(t,r,this);
+            return new Hit(t,r,this,n);
         }
         return null;
     }
