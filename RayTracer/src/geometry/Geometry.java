@@ -21,12 +21,11 @@ public abstract class Geometry {
     
     /**
      * Constructor of class Geometry
-     * @param material defines the material of geometry
+     * sets a default material
      */
     public Geometry() {
         this.material = BASE_MATERIAL;
     }
-    
     
     /**
      * Constructor of class Geometry
@@ -34,6 +33,16 @@ public abstract class Geometry {
      */
     public Geometry(final Material material) {
         this.material = material;
+    }
+    
+    
+    /**
+     * Constructor of class Geometry
+     * sets a default material with given color
+     * @param color defines the color of geometry
+     */
+    public Geometry(final Color color) {
+        this.material = new SingleColorMaterial(color);
     }
     
     /**
