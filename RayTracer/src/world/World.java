@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import raytracer.Ray;
 import geometry.Hit;
 import java.util.Objects;
+import light.Light;
 
 /**
  * represents a world
@@ -32,6 +33,13 @@ public class World {
      * background color if no hit with ray
      */
     public final Color backgroundColor;
+    
+    public World(final ArrayList<Geometry> geometry){
+        this.geoList = geometry;
+        this.lightList = new ArrayList<>();
+        this.ambientColor = new Color(0.5,0.5,0.5);
+        this.backgroundColor = new Color(0,0,0);
+    }
 
     /**
      * Constructs a new world
