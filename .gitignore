@@ -4,7 +4,6 @@ private.properties
 private.xml
 build/
 nbbuild/
-nbproject/
 dist/
 nbdist/
 nbactions.xml
