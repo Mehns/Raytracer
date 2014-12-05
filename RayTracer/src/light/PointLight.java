@@ -27,12 +27,12 @@ public class PointLight extends Light{
     
     @Override
     public boolean illuminates(Point3 point) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
     @Override
     public Vector3 directionFrom(Point3 point) {
-        return position.sub(point);
+        return position.sub(point).normalized();
     }
     
 }

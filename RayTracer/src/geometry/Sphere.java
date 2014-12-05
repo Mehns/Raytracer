@@ -1,6 +1,7 @@
 package geometry;
 
 import color.Color;
+import material.Material;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import raytracer.Ray;
@@ -29,6 +30,12 @@ public class Sphere extends Geometry{
      */
     public Sphere(final Point3 c, final double r, final Color color) {
         super(color);
+        this.c = c;
+        this.r = r;
+    }
+    
+    public Sphere(final Point3 c, final double r, final Material material) {
+        super(material);
         this.c = c;
         this.r = r;
     }

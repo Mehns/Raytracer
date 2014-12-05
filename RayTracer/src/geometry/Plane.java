@@ -2,6 +2,7 @@ package geometry;
 
 import color.Color;
 import java.util.Objects;
+import material.Material;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import raytracer.Ray;
@@ -30,6 +31,12 @@ public class Plane extends Geometry{
      */
     public Plane(final Point3 a, final Normal3 n, final Color color) {
         super(color);
+        this.a = a;
+        this.n = n;
+    }
+    
+    public Plane(final Point3 a, final Normal3 n, final Material material) {
+        super(material);
         this.a = a;
         this.n = n;
     }
