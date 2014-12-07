@@ -11,6 +11,7 @@ import color.Color;
 import world.World;
 import geometry.Plane;
 import geometry.Sphere;
+import geometry.Triangle;
 import java.util.ArrayList;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
@@ -67,6 +68,14 @@ public class TestRay {
         
         RayTracer rayTracer4 = new RayTracer(world4, cam4);
 
+        //Test5 Triangle
+        Triangle tri = new Triangle(new Vector3(-0.5,0.5,-3), new Vector3(0.5,0.5,-3), new Vector3(0.5,-0.5,-3), new Color(1,0,1));
+        ArrayList list5 = new ArrayList();
+        list5.add(tri);
+        World world5 = new World(list5);
+        PerspectiveCamera cam5 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+        
+        RayTracer rayTracer5 = new RayTracer(world5, cam5);
     }
     
     /**

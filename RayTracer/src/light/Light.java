@@ -31,9 +31,9 @@ public abstract class Light {
     public abstract boolean illuminates(final Point3 point);
     
     /**
-     * calculates a vector that points towards the light for given point
-     * @param point to get vector for
-     * @return vector for point
+     * calculates a vector that points towards the light from given point
+     * @param point start of the vector
+     * @return vector towards the light
      */
     public abstract Vector3 directionFrom(final Point3 point);
 }
