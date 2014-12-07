@@ -2,10 +2,11 @@ package material;
 
 import color.Color;
 import geometry.Hit;
+import mathlibrary.Normal3;
 import world.World;
 /**
  *
- * @author Christian Mehns <s55689@beuth-hichschule.de>
+ * @author Christian Mehns <s55689@beuth-hochschule.de>
  */
 public class PhongMaterial extends Material{
     public Color diffuse;
@@ -20,6 +21,7 @@ public class PhongMaterial extends Material{
 
     @Override
     public Color colorFor(Hit hit, World world) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Normal3 normal = hit.normal;
+        
     }
 }

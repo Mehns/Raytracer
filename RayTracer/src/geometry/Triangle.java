@@ -6,6 +6,7 @@
 package geometry;
 
 import color.Color;
+import material.Material;
 import mathlibrary.Mat3x3;
 import mathlibrary.Normal3;
 import mathlibrary.Vector3;
@@ -41,6 +42,20 @@ public class Triangle extends Geometry{
      */
     public Triangle(final Vector3 a, final Vector3 b, final Vector3 c, final Color color) {
         super(color);
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+    
+    /**
+     * Contructs a triangle
+     * @param a edge of triangle
+     * @param b edge of triangle
+     * @param c edge of triangle
+     * @param material of triangle
+     */
+    public Triangle(final Vector3 a, final Vector3 b, final Vector3 c, final Material material) {
+        super(material);
         this.a = a;
         this.b = b;
         this.c = c;

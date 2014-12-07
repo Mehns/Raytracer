@@ -10,6 +10,7 @@ import color.Color;
 import world.World;
 import geometry.Plane;
 import geometry.Sphere;
+import geometry.Triangle;
 import java.util.ArrayList;
 import light.DirectionalLight;
 import light.Light;
@@ -33,18 +34,24 @@ public class TestRay2 {
     Color white = new Color(1,1,1);
     Color red = new Color(1,0,0);
     Color green = new Color(0,1,0);
+    Color blue = new Color(0,0,1);
+    Color yellow = new Color(1,1,0);
     
     //material
-    LambertMaterial material1 = new LambertMaterial(green);
-    LambertMaterial material2 = new LambertMaterial(red);
+    LambertMaterial matGreen = new LambertMaterial(green);
+    LambertMaterial matRed = new LambertMaterial(red);
+    LambertMaterial matBlue = new LambertMaterial(blue);
+    LambertMaterial matYellow= new LambertMaterial(yellow);
         
     //geometry
-    Plane plane1 = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), material1);
-    Sphere sphere1 = new Sphere(new Point3(1,1,8),1.0,material2);
+    Plane plane1 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), matRed);
+    Sphere sphere1 = new Sphere(new Point3(1,1,1),0.5,matGreen);
+    Triangle triangle1 = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), matYellow);
     
     ArrayList geoList1 = new ArrayList();
     geoList1.add(plane1);
     geoList1.add(sphere1);
+    geoList1.add(triangle1);
     
     //camera
     PerspectiveCamera camera1 = new PerspectiveCamera(new Point3(4, 4, 4), 
@@ -54,16 +61,16 @@ public class TestRay2 {
          
     
     //lights
-    PointLight light1 = new PointLight(new Point3(1, 3, 1), white);
+    PointLight light1 = new PointLight(new Point3(2, 2, 2), white);
     DirectionalLight light2 = new DirectionalLight(new Vector3(-1,-1,-1), white);
     ArrayList<Light> lightList1 = new ArrayList<>();
-    lightList1.add(light1);
+    lightList1.add(light2);
     
     //world
     World world1 = new World(geoList1,lightList1, white);
-    PerspectiveCamera cam1 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+    
 
-    RayTracer rayTracer1 = new RayTracer(world1, cam1);
+    RayTracer rayTracer1 = new RayTracer(world1, camera1);
 
     
     }
