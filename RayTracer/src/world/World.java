@@ -79,9 +79,11 @@ public class World {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.geoList);
-        hash = 79 * hash + Objects.hashCode(this.backgroundColor);
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.geoList);
+        hash = 19 * hash + Objects.hashCode(this.lightList);
+        hash = 19 * hash + Objects.hashCode(this.ambientColor);
+        hash = 19 * hash + Objects.hashCode(this.backgroundColor);
         return hash;
     }
 
@@ -97,15 +99,22 @@ public class World {
         if (!Objects.equals(this.geoList, other.geoList)) {
             return false;
         }
+        if (!Objects.equals(this.lightList, other.lightList)) {
+            return false;
+        }
+        if (!Objects.equals(this.ambientColor, other.ambientColor)) {
+            return false;
+        }
         if (!Objects.equals(this.backgroundColor, other.backgroundColor)) {
             return false;
         }
         return true;
     }
 
+    
+
     @Override
     public String toString() {
-        return "World{" + "list=" + geoList + ", backgroundColor=" + backgroundColor + '}';
+        return "World{" + "geoList=" + geoList + ", lightList=" + lightList + ", ambientColor=" + ambientColor + ", backgroundColor=" + backgroundColor + '}';
     }
-    
 }
