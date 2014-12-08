@@ -16,6 +16,7 @@ import light.DirectionalLight;
 import light.Light;
 import light.PointLight;
 import material.LambertMaterial;
+import material.PhongMaterial;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
@@ -32,6 +33,8 @@ public class TestRay2 {
         
     //colors
     Color white = new Color(1,1,1);
+    Color grey = new Color(0.25,0.25,0.25);
+    Color black = new Color(0,0,0);
     Color red = new Color(1,0,0);
     Color green = new Color(0,1,0);
     Color blue = new Color(0,0,1);
@@ -42,10 +45,12 @@ public class TestRay2 {
     LambertMaterial matRed = new LambertMaterial(red);
     LambertMaterial matBlue = new LambertMaterial(blue);
     LambertMaterial matYellow= new LambertMaterial(yellow);
+    PhongMaterial matPhongBlue = new PhongMaterial(blue, white,64);
+    PhongMaterial matPhongGreen = new PhongMaterial(green, white,64);
         
     //geometry
     Plane plane1 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), matRed);
-    Sphere sphere1 = new Sphere(new Point3(1,1,1),0.5,matGreen);
+    Sphere sphere1 = new Sphere(new Point3(1,1,1),0.5,matPhongGreen);
     Triangle triangle1 = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), matYellow);
     
     ArrayList geoList1 = new ArrayList();
@@ -67,7 +72,7 @@ public class TestRay2 {
     lightList1.add(light2);
     
     //world
-    World world1 = new World(geoList1,lightList1, white);
+    World world1 = new World(geoList1,lightList1, black);
     
 
     RayTracer rayTracer1 = new RayTracer(world1, camera1);
