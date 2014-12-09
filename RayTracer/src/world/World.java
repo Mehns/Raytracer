@@ -67,12 +67,11 @@ public class World {
                 hitList.add(hit);
             }    
         }
-        double minT = Double.MAX_VALUE;
+
         for (Hit h: hitList){
-            if(h.t<minT){
-                minT = h.t;
+            if(hit == null || h.t<hit.t){
+                hit = h; 
             }
-            hit = h;
         }
         return hit;
 }

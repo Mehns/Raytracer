@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package raytracer;
 
 import camera.OrthographicCamera;
 import camera.PerspectiveCamera;
 import color.Color;
+import geometry.AxisAlignedBox;
 import world.World;
 import geometry.Plane;
 import geometry.Sphere;
@@ -76,6 +72,16 @@ public class TestRay {
         PerspectiveCamera cam5 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
         
         RayTracer rayTracer5 = new RayTracer(world5, cam5);
+        
+        //Test6 AAB
+        AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5),new Color(0,0,1));
+        ArrayList list6 = new ArrayList();
+        list6.add(box);
+        World world6 = new World(list6);
+        PerspectiveCamera cam6 = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0),Math.PI/4);
+        
+        RayTracer rayTracer6 = new RayTracer(world6, cam6);
+
     }
     
     /**
