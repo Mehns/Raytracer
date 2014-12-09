@@ -7,6 +7,7 @@ package raytracer;
 
 import camera.PerspectiveCamera;
 import color.Color;
+import geometry.AxisAlignedBox;
 import world.World;
 import geometry.Plane;
 import geometry.Sphere;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import light.DirectionalLight;
 import light.Light;
 import light.PointLight;
+import light.SpotLight;
 import material.LambertMaterial;
 import material.PhongMaterial;
 import mathlibrary.Normal3;
@@ -28,8 +30,6 @@ import mathlibrary.Vector3;
 public class TestRay2 {
 
     public TestRay2(){
-        
-    //Test1
         
     //colors
     Color white = new Color(1,1,1);
@@ -45,38 +45,105 @@ public class TestRay2 {
     LambertMaterial matRed = new LambertMaterial(red);
     LambertMaterial matBlue = new LambertMaterial(blue);
     LambertMaterial matYellow= new LambertMaterial(yellow);
+    
     PhongMaterial matPhongBlue = new PhongMaterial(blue, white,64);
     PhongMaterial matPhongGreen = new PhongMaterial(green, white,64);
-        
-    //geometry
-    Plane plane1 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), matRed);
-    Sphere sphere1 = new Sphere(new Point3(1,1,1),0.5,matPhongGreen);
-    Triangle triangle1 = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), matYellow);
+    PhongMaterial matPhongRed = new PhongMaterial(red, white,64);
+    PhongMaterial matPhongYellow = new PhongMaterial(yellow, white,64);
     
+    //lights
+    PointLight pointLight = new PointLight(new Point3(4, 4, 4), white);
+    DirectionalLight directionalLight = new DirectionalLight(new Vector3(-1,-1,-1), white);
+    SpotLight spotLight = new SpotLight(new Point3(4,4,4), new Vector3(-1,-1,-1), Math.PI/14, white);
+    
+    ArrayList<Light> lightList1 = new ArrayList<>();
+    lightList1.add(pointLight);
+    
+    ArrayList<Light> lightList2 = new ArrayList<>();
+    lightList2.add(directionalLight);
+    
+    ArrayList<Light> lightList3 = new ArrayList<>();
+    lightList3.add(spotLight);
+    
+    //camera
+    PerspectiveCamera camera = new PerspectiveCamera(new Point3(4, 4, 4), 
+                                                      new Vector3(-1, -1, -1), 
+                                                      new Vector3(0, 1, 0), 
+                                                      Math.PI/4); 
+    
+    //Test Scene 1:
+    //geometry
+    Plane plane1 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), red);
+    Sphere sphere1 = new Sphere(new Point3(1,1,1), 0.5, green);
+    AxisAlignedBox box1 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), blue);
+    Triangle triangle1 = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), yellow);
+
     ArrayList geoList1 = new ArrayList();
     geoList1.add(plane1);
     geoList1.add(sphere1);
+    geoList1.add(box1);
     geoList1.add(triangle1);
-    
-    //camera
-    PerspectiveCamera camera1 = new PerspectiveCamera(new Point3(4, 4, 4), 
-                                                      new Vector3(-1, -1, -1), 
-                                                      new Vector3(0, 1, 0), 
-                                                      Math.PI/4);
-         
-    
-    //lights
-    PointLight light1 = new PointLight(new Point3(2, 2, 2), white);
-    DirectionalLight light2 = new DirectionalLight(new Vector3(-1,-1,-1), white);
-    ArrayList<Light> lightList1 = new ArrayList<>();
-    lightList1.add(light2);
-    
+        
     //world
-    World world1 = new World(geoList1,lightList1, black);
+    World world1 = new World(geoList1);
     
+    RayTracer rayTracer1 = new RayTracer(world1, camera);
+    
+    
+    //Test Scene 2:
+    //geometry
+    Plane plane2 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), matRed);
+    Sphere sphere2 = new Sphere(new Point3(1,1,1),0.5,matGreen);
+    AxisAlignedBox box2 = new AxisAlignedBox (new Point3(-1.5,0.5,0.5),new Point3(-0.5,1.5,1.5), matBlue);
+    Triangle triangle2 = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), matYellow);
+    
+    ArrayList geoList2 = new ArrayList();
+    geoList2.add(plane2);
+    geoList2.add(sphere2);
+    geoList2.add(box2);
+    geoList2.add(triangle2);
+    
+    World world2 = new World(geoList2, lightList1, black);
+    
+    RayTracer rayTracer2 = new RayTracer(world2, camera);
 
-    RayTracer rayTracer1 = new RayTracer(world1, camera1);
+    //Test Scene 3:
+    //geometry
+    Plane plane3 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), matPhongRed);
+    Sphere sphere3 = new Sphere(new Point3(1,1,1),0.5,matPhongGreen);
+    AxisAlignedBox box3 = new AxisAlignedBox (new Point3(-1.5,0.5,0.5),new Point3(-0.5,1.5,1.5), matPhongBlue);
+    Triangle triangle3 = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), matPhongYellow);
+    
+    ArrayList geoList3 = new ArrayList();
+    geoList3.add(plane3);
+    geoList3.add(sphere3);
+    geoList3.add(box3);
+    geoList3.add(triangle3);
+    
+    World world3 = new World(geoList3, lightList1, black);
+    
+    RayTracer rayTracer3 = new RayTracer(world3, camera);
 
+    
+    //Test Scene 4:
+    
+    World world4 = new World(geoList3, lightList2, black);
+    
+    RayTracer raytracer4 = new RayTracer(world4, camera);
+    
+    
+    //Test Scene 5:
+    
+    World world5 = new World(geoList3, lightList3, black);
+    
+    RayTracer raytracer5 = new RayTracer(world5, camera);
+
+    
+    //Test Scene 6:
+    
+    World world6 = new World(geoList3, lightList3, grey);
+    
+    RayTracer raytracer6 = new RayTracer(world6, camera);
     
     }
 

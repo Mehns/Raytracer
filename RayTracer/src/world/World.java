@@ -43,7 +43,9 @@ public class World {
 
     /**
      * Constructs a new world
-     * @param list lists all geometries in world
+     * @param geometry lists all geometries in world
+     * @param lights lists all lights in world
+     * @param ambientColor color of ambient light
      */
     public World(final ArrayList<Geometry> geometry, final ArrayList<Light> lights,
                     final Color ambientColor) {
