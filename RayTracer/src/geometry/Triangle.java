@@ -60,8 +60,8 @@ public class Triangle extends Geometry{
     @Override
     public Hit hit(final Ray r) {
         final Mat3x3 matA = new Mat3x3(a.x-b.x,a.x-c.x,r.d.x,
-                                 a.y-b.y,a.y-c.y,r.d.y,
-                                 a.z-b.z,a.z-c.z,r.d.z);
+                                       a.y-b.y,a.y-c.y,r.d.y,
+                                       a.z-b.z,a.z-c.z,r.d.z);
         
         final Vector3 vecB = new Vector3(a.x-r.o.x,a.y-r.o.y,a.z-r.o.z);
         
@@ -74,6 +74,8 @@ public class Triangle extends Geometry{
         final double barBeta = matA1.determinant/matA.determinant;
         
         final double barGamma = matA2.determinant/matA.determinant;
+        
+        final double barAlpha = 1.0 - barBeta - barGamma;
        
         final double t = matA3.determinant/matA.determinant;
         
@@ -81,7 +83,10 @@ public class Triangle extends Geometry{
             return null;
         }
         
-        final Normal3 n = a.add(a.sub(b.asNormal()).mul(barBeta).add(c.sub(a.asNormal()).mul(barGamma))).asNormal();
+        final Normal3 na = b.sub(a.asNormal()).x(c.sub(a.asNormal())).normalized().asNormal();
+        Normal3 nb = c.sub(b.asNormal()).x(a.sub(b.asNormal())).normalized().asNormal();
+        Normal3 nc = a.sub(c.asNormal()).x(b.sub(c.asNormal())).normalized().asNormal();
+        final Normal3 n = na.mul(barAlpha).add(nb.mul(barBeta)).add(nc.mul(barGamma));
         
         return new Hit(t,r,this,n);
     }
