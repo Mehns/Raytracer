@@ -54,7 +54,7 @@ public class Mat3x3 {
     /**
      * Constructor
      * Constructs and initializes a 3x3 matrix with 9 double components.
-     * Calculates and sets the determinante of the matrix.
+     * Calculates and sets the determinant of the matrix.
      * @param m11 The m11 component of this matrix
      * @param m12 The m12 component of this matrix
      * @param m13 The m13 component of this matrix
@@ -139,7 +139,7 @@ public class Mat3x3 {
     }
     
     /**
-     * The method changes collum1 of this 3x3 matrix with a vector
+     * The method changes column1 of this 3x3 matrix with a vector
      * @param v is a vector with 3 components
      *      Must not be null.
      * @return a new 3x3 matrix
@@ -155,7 +155,7 @@ public class Mat3x3 {
     }
 
     /**
-     * The method changes collum2 of this 3x3 matrix with a vector
+     * The method changes column2 of this 3x3 matrix with a vector
      * @param v is a vector with 3 components
      *      Must not be null.
      * @return a new 3x3 matrix
@@ -171,7 +171,7 @@ public class Mat3x3 {
     }
     
     /**
-     * The method changes collum3 of this 3x3 matrix with a vector
+     * The method changes column3 of this 3x3 matrix with a vector
      * @param v is a vector with 3 components
      * @return a new 3x3 matrix
      */
