@@ -17,6 +17,7 @@ import light.DirectionalLight;
 import light.Light;
 import light.PointLight;
 import light.SpotLight;
+import material.BlinnPhongMaterial;
 import material.LambertMaterial;
 import material.PhongMaterial;
 import mathlibrary.Normal3;
@@ -50,6 +51,12 @@ public class TestRay2 {
     PhongMaterial matPhongGreen = new PhongMaterial(green, white,64);
     PhongMaterial matPhongRed = new PhongMaterial(red, white,64);
     PhongMaterial matPhongYellow = new PhongMaterial(yellow, white,64);
+    
+    //BlinnPhong Material
+    BlinnPhongMaterial matBlinnPhongBlue = new BlinnPhongMaterial(blue, white, 64);
+    BlinnPhongMaterial matBlinnPhongGreen = new BlinnPhongMaterial(green, white, 64);
+    BlinnPhongMaterial matBlinnPhongRed = new BlinnPhongMaterial(red, white, 64);
+    BlinnPhongMaterial matBlinnPhongYellow = new BlinnPhongMaterial(yellow, white, 64);
     
     //lights
     PointLight pointLight = new PointLight(new Point3(4, 4, 4), white);
@@ -145,6 +152,20 @@ public class TestRay2 {
     
     RayTracer raytracer6 = new RayTracer(world6, camera);
     
+    //Test Scene 7:
+    Plane plane7 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), matBlinnPhongRed);
+    Sphere sphere7 = new Sphere(new Point3(1,1,1),0.5,matBlinnPhongGreen);
+    AxisAlignedBox box7 = new AxisAlignedBox (new Point3(-1.5,0.5,0.5),new Point3(-0.5,1.5,1.5), matBlinnPhongBlue);
+    Triangle triangle7 = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), matBlinnPhongYellow);
+    
+    ArrayList geoList7 = new ArrayList();
+    geoList7.add(plane7);
+    geoList7.add(sphere7);
+    geoList7.add(box7);
+    geoList7.add(triangle7);
+    World world7 = new World(geoList7, lightList2, black);
+    
+    RayTracer raytracer7 = new RayTracer(world7, camera);
     }
 
     
