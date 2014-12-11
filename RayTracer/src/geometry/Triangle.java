@@ -30,6 +30,21 @@ public class Triangle extends Geometry{
     public final Vector3 c;
     
     /**
+     * normal for a
+     */
+    public final Normal3 na;
+    
+    /**
+     * normal for b
+     */
+    public final Normal3 nb;
+    
+    /**
+     * normal for c
+     */
+    public final Normal3 nc;
+    
+    /**
      * Contructs a triangle with color
      * @param a edge of triangle
      * @param b edge of triangle
@@ -41,6 +56,10 @@ public class Triangle extends Geometry{
         this.a = a;
         this.b = b;
         this.c = c;
+        
+        this.na = b.sub(a.asNormal()).x(c.sub(a.asNormal())).normalized().asNormal();
+        this.nb = c.sub(b.asNormal()).x(a.sub(b.asNormal())).normalized().asNormal();
+        this.nc = a.sub(c.asNormal()).x(b.sub(c.asNormal())).normalized().asNormal();
     }
     
     /**
@@ -55,6 +74,10 @@ public class Triangle extends Geometry{
         this.a = a;
         this.b = b;
         this.c = c;
+        
+        this.na = b.sub(a.asNormal()).x(c.sub(a.asNormal())).normalized().asNormal();
+        this.nb = c.sub(b.asNormal()).x(a.sub(b.asNormal())).normalized().asNormal();
+        this.nc = a.sub(c.asNormal()).x(b.sub(c.asNormal())).normalized().asNormal();
     }
     
     @Override
@@ -83,9 +106,6 @@ public class Triangle extends Geometry{
             return null;
         }
         
-        final Normal3 na = b.sub(a.asNormal()).x(c.sub(a.asNormal())).normalized().asNormal();
-        Normal3 nb = c.sub(b.asNormal()).x(a.sub(b.asNormal())).normalized().asNormal();
-        Normal3 nc = a.sub(c.asNormal()).x(b.sub(c.asNormal())).normalized().asNormal();
         final Normal3 n = na.mul(barAlpha).add(nb.mul(barBeta)).add(nc.mul(barGamma));
         
         return new Hit(t,r,this,n);
