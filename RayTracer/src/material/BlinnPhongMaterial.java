@@ -3,6 +3,7 @@ package material;
 
 import color.Color;
 import geometry.Hit;
+import java.util.Objects;
 import light.Light;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
@@ -52,7 +53,42 @@ public class BlinnPhongMaterial extends Material{
                                         add(specular.mul(lightColor).mul(max2)));
             }
         }
-        return null;
+        return totalColor;
     }
     
+    @Override
+    public String toString(){
+        return "BlinnPhongMaterial{" + "diffuse=" + diffuse + ", specular=" + 
+                specular + ", exponent=" + exponent + '}';
+    }
+    
+    @Override
+    public int hashCode(){
+        int hash = 5;
+        hash = 73 * hash + Objects.hashCode(this.diffuse);
+        hash = 73 * hash + Objects.hashCode(this.specular);
+        hash = 73 * hash + this.exponent;
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final BlinnPhongMaterial other = (BlinnPhongMaterial) obj;
+        if (!Objects.equals(this.diffuse, other.diffuse)) {
+            return false;
+        }
+        if (!Objects.equals(this.specular, other.specular)) {
+            return false;
+        }
+        if (this.exponent != other.exponent) {
+            return false;
+        }
+        return true;
+    }
 }
