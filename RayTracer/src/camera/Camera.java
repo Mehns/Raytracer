@@ -8,7 +8,7 @@ import raytracer.Ray;
  * Abstract Base Class of a Camera
  * @author Christian Mehns
  */
-public class Camera {
+public abstract class Camera {
 
     /**
      * eye position point
