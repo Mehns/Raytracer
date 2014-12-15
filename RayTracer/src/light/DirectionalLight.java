@@ -6,33 +6,33 @@ import mathlibrary.Point3;
 import mathlibrary.Vector3;
 
 /**
- *
+ * represents a directionallight
  * @author Lena
  */
 public class DirectionalLight extends Light{
     
     /**
-     * 
+     * direction of light
      */
     public final Vector3 direction;
 
     /**
-     * 
-     * @param direction
-     * @param color 
+     * constructs new DirectionalLight
+     * @param direction of light
+     * @param color of light
      */
-    public DirectionalLight(Vector3 direction, Color color) {
+    public DirectionalLight(final Vector3 direction, final Color color) {
         super(color);
         this.direction = direction;
     }
 
     @Override
-    public boolean illuminates(Point3 point) {
+    public boolean illuminates(final Point3 point) {
         return true;
     }
 
     @Override
-    public Vector3 directionFrom(Point3 point) {
+    public Vector3 directionFrom(final Point3 point) {
         return direction.mul(-1).normalized();
     }
 

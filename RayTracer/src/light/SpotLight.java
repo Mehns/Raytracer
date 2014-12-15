@@ -6,34 +6,34 @@ import mathlibrary.Point3;
 import mathlibrary.Vector3;
 
 /**
- *
+ * represents a spotlight
  * @author Lena
  */
 public class SpotLight extends Light{
     
     /**
-     * 
+     * position of light
      */
     public final Point3 position;
     
     /**
-     * 
+     * direction of light
      */
     public final Vector3 direction;
     
     /**
-     * 
+     * open lense angle of spotlight
      */
     public final double halfAngle;
 
     /**
-     * 
-     * @param position
-     * @param direction
-     * @param halfAngle
-     * @param color 
+     * constructs new spotLight
+     * @param position of light
+     * @param direction of light
+     * @param halfAngle of light
+     * @param color of light
      */
-    public SpotLight(Point3 position, Vector3 direction, double halfAngle, Color color) {
+    public SpotLight(final Point3 position, final Vector3 direction, final double halfAngle, final Color color) {
         super(color);
         this.position = position;
         this.direction = direction;
@@ -41,7 +41,7 @@ public class SpotLight extends Light{
     }
 
     @Override
-    public boolean illuminates(Point3 point) {
+    public boolean illuminates(final Point3 point) {
         // cos (gamma) = a*b/|a|*|b|  --> a,b normalized |a|*|b|=1, can drop /|a|*|b|
         Vector3 a = directionFrom(point).mul(-1);
         Vector3 b = direction.normalized();
@@ -49,7 +49,7 @@ public class SpotLight extends Light{
     }
 
     @Override
-    public Vector3 directionFrom(Point3 point) {
+    public Vector3 directionFrom(final Point3 point) {
         return position.sub(point).normalized();
     }
 

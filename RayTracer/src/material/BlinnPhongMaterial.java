@@ -15,24 +15,35 @@ import world.World;
  */
 public class BlinnPhongMaterial extends Material{
 
-    public Color diffuse;
-    public Color specular;
-    public int exponent;
+    /**
+     * color of the material
+     */
+    public final Color diffuse;
+    
+    /**
+     * color of glossy reflection
+     */
+    public final Color specular;
+    
+    /**
+     * intensity of the glossy reflection
+     */
+    public final int exponent;
 
     /**
      * constructs an instance of a Blinn-Phong-Material
-     * @param diffuse
-     * @param specular
-     * @param exponent 
+     * @param diffuse color of the material
+     * @param specular color of glossy reflection
+     * @param exponent intensity of the glossy reflection
      */
-    public BlinnPhongMaterial(Color diffuse, Color specular, int exponent) {
+    public BlinnPhongMaterial(final Color diffuse, final Color specular, final int exponent) {
         this.diffuse = diffuse;
         this.specular = specular;
         this.exponent = exponent;
     }
     
     @Override
-    public Color colorFor(Hit hit, World world) {
+    public Color colorFor(final Hit hit, final World world) {
         Color totalColor = this.diffuse.mul(world.ambientColor);
         
         Point3 pointHit = hit.ray.at(hit.t);

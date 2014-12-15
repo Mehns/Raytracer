@@ -14,13 +14,13 @@ public class SingleColorMaterial extends Material{
     /**
      * Color of Material
      */
-    public Color color;
+    public final Color color;
     
     /**
      * Constructor of SingleColorMaterial
      * @param color Color of material
      */
-    public SingleColorMaterial(Color color){
+    public SingleColorMaterial(final Color color){
         this.color = color;
     }
     

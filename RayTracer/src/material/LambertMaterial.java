@@ -17,18 +17,18 @@ public class LambertMaterial extends Material{
     /**
      * color of material
      */
-    Color color;
+    public final Color color;
     
     /**
      * creates an instance of a lambert material
      * @param color the color of the material
      */
-    public LambertMaterial(Color color){
+    public LambertMaterial(final Color color){
         this.color = color;
     }
 
     @Override
-    public Color colorFor(Hit hit, World world) {
+    public Color colorFor(final Hit hit, final World world) {
         Normal3 hitNormal = hit.normal;
         Color totalColor = this.color.mul(world.ambientColor);
                 

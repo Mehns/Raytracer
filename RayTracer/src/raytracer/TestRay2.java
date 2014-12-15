@@ -25,7 +25,7 @@ import mathlibrary.Point3;
 import mathlibrary.Vector3;
 
 /**
- *
+ * Test class for task 3
  * @author Christian Mehns <s55689@beuth-hichschule.de>
  */
 public class TestRay2 {

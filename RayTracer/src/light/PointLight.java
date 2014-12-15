@@ -12,14 +12,14 @@ import mathlibrary.Vector3;
 public class PointLight extends Light{
     
     /**
-     * 
+     * position of light
      */
     public final Point3 position;
 
     /**
-     * 
-     * @param position
-     * @param color 
+     * constructs new pointLight
+     * @param position of light
+     * @param color of light
      */
     public PointLight(final Point3 position, final Color color) {
         super(color);
@@ -27,12 +27,12 @@ public class PointLight extends Light{
     }
     
     @Override
-    public boolean illuminates(Point3 point) {
+    public boolean illuminates(final Point3 point) {
         return true;
     }
 
     @Override
-    public Vector3 directionFrom(Point3 point) {
+    public Vector3 directionFrom(final Point3 point) {
         return position.sub(point).normalized();
     }
 

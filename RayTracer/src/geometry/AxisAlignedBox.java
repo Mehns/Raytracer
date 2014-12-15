@@ -29,37 +29,37 @@ public class AxisAlignedBox extends Geometry {
     /**
      * list for all 6 side planes of AAB
      */
-    public ArrayList<Plane> planeList = new ArrayList<>();
+    public final ArrayList<Plane> planeList = new ArrayList<>();
 
     /**
      * left front plane of AAB
      */
-    Plane leftFront;
+    public final Plane leftFront;
 
     /**
      * left back plane of AAB
      */
-    Plane leftBack;
+    public final Plane leftBack;
 
     /**
      * bottom plane of AAB
      */
-    Plane bottom;
+    public final Plane bottom;
 
     /**
      * right front plane of AAB
      */
-    Plane rightFront;
+    public final Plane rightFront;
 
     /**
      * right back plane of AAB
      */
-    Plane rightBack;
+    public final Plane rightBack;
 
     /**
      * top plane of AAB
      */
-    Plane top;
+    public final Plane top;
 
     /**
      * constrcts an axis-aligned-box (AAB) with color: 
@@ -68,7 +68,7 @@ public class AxisAlignedBox extends Geometry {
      * @param run right upper near corner
      * @param color of AAB
      */
-    public AxisAlignedBox(Point3 lbf, Point3 run, Color color) {
+    public AxisAlignedBox(final Point3 lbf, final Point3 run, final Color color) {
         super(color);
         this.lbf = lbf;
         this.run = run;
@@ -99,7 +99,7 @@ public class AxisAlignedBox extends Geometry {
      * @param run right upper near corner
      * @param material of AAB
      */
-    public AxisAlignedBox(Point3 lbf, Point3 run, Material material) {
+    public AxisAlignedBox(final Point3 lbf, final Point3 run, final Material material) {
         super(material);
         this.lbf = lbf;
         this.run = run;
@@ -124,7 +124,7 @@ public class AxisAlignedBox extends Geometry {
     }
 
     @Override
-    public Hit hit(Ray r) {
+    public Hit hit(final Ray r) {
 
         ArrayList<Hit> hits = new ArrayList<>();
 

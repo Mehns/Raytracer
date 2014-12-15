@@ -13,9 +13,21 @@ import world.World;
  * @author Christian Mehns <s55689@beuth-hochschule.de>
  */
 public class PhongMaterial extends Material{
-    public Color diffuse;
-    public Color specular;
-    public int exponent;
+    
+    /**
+     * color of the material
+     */
+    public final Color diffuse;
+    
+    /**
+     * color of glossy reflection
+     */
+    public final Color specular;
+    
+    /**
+     * intensity of the glossy reflection
+     */
+    public final int exponent;
 
     /**
      * creates an instance of a Phong material
@@ -23,14 +35,14 @@ public class PhongMaterial extends Material{
      * @param specular the color of glossy reflection
      * @param exponent the intensity of the glossy reflection
      */
-    public PhongMaterial(Color diffuse, Color specular, int exponent) {
+    public PhongMaterial(final Color diffuse, final Color specular, final int exponent) {
         this.diffuse = diffuse;
         this.specular = specular;
         this.exponent = exponent;
     }
 
     @Override
-    public Color colorFor(Hit hit, World world) {
+    public Color colorFor(final Hit hit, final World world) {
         Normal3 hitNormal = hit.normal;
         Color totalColor = this.diffuse.mul(world.ambientColor);
                 
