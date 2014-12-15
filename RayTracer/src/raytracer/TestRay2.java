@@ -72,6 +72,11 @@ public class TestRay2 {
     ArrayList<Light> lightList3 = new ArrayList<>();
     lightList3.add(spotLight);
     
+    ArrayList<Light> lightList4MultipleLight = new ArrayList<>();
+    lightList4MultipleLight.add(pointLight);
+    lightList4MultipleLight.add(directionalLight);
+    lightList4MultipleLight.add(spotLight);
+    
     //camera
     PerspectiveCamera camera = new PerspectiveCamera(new Point3(4, 4, 4), 
                                                       new Vector3(-1, -1, -1), 
@@ -166,6 +171,23 @@ public class TestRay2 {
     World world7 = new World(geoList7, lightList2, black);
     
     RayTracer raytracer7 = new RayTracer(world7, camera);
+    
+    
+    //Test Scene 8:
+    /*all three Lightsources in one scene*/
+    Plane plane8 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), matBlinnPhongRed);
+    Sphere sphere8 = new Sphere(new Point3(1,1,1),0.5,matBlinnPhongGreen);
+    AxisAlignedBox box8 = new AxisAlignedBox (new Point3(-1.5,0.5,0.5),new Point3(-0.5,1.5,1.5), matBlinnPhongBlue);
+    Triangle triangle8 = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), matBlinnPhongYellow);
+    
+    ArrayList geoList8 = new ArrayList();
+    geoList8.add(plane8);
+    geoList8.add(sphere8);
+    geoList8.add(box8);
+    geoList8.add(triangle8);
+    World world8 = new World(geoList8, lightList4MultipleLight, black);
+    
+    RayTracer raytracer8 = new RayTracer(world8, camera);
     }
 
     
