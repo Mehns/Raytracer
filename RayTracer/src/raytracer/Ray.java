@@ -27,7 +27,7 @@ public class Ray {
      * @param o Origin of the ray
      * @param d Direction of the ray
      */
-    public Ray(Point3 o, Vector3 d) {
+    public Ray(final Point3 o, final Vector3 d) {
         this.o = o;
         this.d = d;
     }
@@ -37,7 +37,7 @@ public class Ray {
      * @param t distance 
      * @return Point at the given distance
      */
-    public Point3 at(double t){
+    public Point3 at(final double t){
         // p = o + t*d;
         return o.add(d.mul(t));
     }
@@ -47,7 +47,7 @@ public class Ray {
      * @param p Point
      * @return Distance
      */
-    public double tOf(Point3 p){
+    public double tOf(final Point3 p){
         // t = (p - o) / d
         return p.sub(o).magnitude / this.d.magnitude;
     }

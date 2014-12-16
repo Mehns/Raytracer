@@ -29,22 +29,22 @@ public class ImageCanvas extends Canvas {
     /**
      * world for image
      */
-    World world; 
+    public final World world; 
     
     /**
      * camera for image
      */
-    Camera cam;
+    public final Camera cam;
     
     /**
      * width of image
      */
-    public int imageWidth;
+    public final int imageWidth;
     
     /**
      * height of image
      */
-    public int imageHeight;
+    public final int imageHeight;
 
     
     /**
@@ -63,7 +63,6 @@ public class ImageCanvas extends Canvas {
     
     @Override
     public void paint (final Graphics graphic){
-        System.out.println("paint my picture");
         this.image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
         final WritableRaster raster = image.getRaster();
         final ColorModel colorModel = image.getColorModel();
