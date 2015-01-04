@@ -62,6 +62,12 @@ public class RayTracer extends JFrame{
 //        }
 //    }
 
+    public static void main(String[] args){
+//        TestRay test1_Exercise2 = new TestRay();
+//        TestRay2 test2_Exercise3 = new TestRay2();
+        TestRay3 test3_Exercise4 = new TestRay3();
+    }
+    
     @Override
     public String toString() {
         return "RayTracer{" + "imageCanvas=" + imageCanvas + '}';

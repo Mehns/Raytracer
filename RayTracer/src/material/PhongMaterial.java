@@ -49,7 +49,7 @@ public class PhongMaterial extends Material{
         Point3 pointHit = hit.ray.at(hit.t);
         
         for(Light light: world.lightList){
-            if(light.illuminates(pointHit)){
+            if(light.illuminates(pointHit, world)){
                 Vector3 l = light.directionFrom(pointHit).normalized();
                 Vector3 r = l.reflectedOn(hitNormal);
                 

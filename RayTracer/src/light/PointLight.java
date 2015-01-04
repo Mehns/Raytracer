@@ -1,9 +1,12 @@
 package light;
 
 import color.Color;
+import geometry.Hit;
 import java.util.Objects;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import raytracer.Ray;
+import world.World;
 
 /**
  * represents a pointlight
@@ -20,14 +23,31 @@ public class PointLight extends Light{
      * constructs new pointLight
      * @param position of light
      * @param color of light
+     * @param castsShadows boolean for shadow
      */
-    public PointLight(final Point3 position, final Color color) {
-        super(color);
+    public PointLight(final Point3 position, final Color color, final boolean castsShadows) {
+        super(color, castsShadows);
         this.position = position;
     }
     
     @Override
-    public boolean illuminates(final Point3 point) {
+    public boolean illuminates(final Point3 point, final World world) {
+        if(this.castsShadows){
+            
+            // new ray from given point to light
+            final Ray ray = new Ray(point, directionFrom(point));
+            
+            // search for hit with ray
+            final Hit hit= world.hit(ray);
+            
+            // if no hit: point must be illuminated
+            if(hit == null){
+                return true;
+            }
+            
+            // if t>=tl no shadow: point must be illuminated
+            return hit.t >= ray.tOf(position);
+        }
         return true;
     }
 

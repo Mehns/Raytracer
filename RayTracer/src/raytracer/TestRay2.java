@@ -59,9 +59,9 @@ public class TestRay2 {
     BlinnPhongMaterial matBlinnPhongYellow = new BlinnPhongMaterial(yellow, white, 64);
     
     //lights
-    PointLight pointLight = new PointLight(new Point3(4, 4, 4), white);
-    DirectionalLight directionalLight = new DirectionalLight(new Vector3(-1,-1,-1), white);
-    SpotLight spotLight = new SpotLight(new Point3(4,4,4), new Vector3(-1,-1,-1), Math.PI/14, white);
+    PointLight pointLight = new PointLight(new Point3(4, 4, 4), white, false);
+    DirectionalLight directionalLight = new DirectionalLight(new Vector3(-1,-1,-1), white, false);
+    SpotLight spotLight = new SpotLight(new Point3(4,4,4), new Vector3(-1,-1,-1), Math.PI/14, white, false);
     
     ArrayList<Light> lightList1 = new ArrayList<>();
     lightList1.add(pointLight);

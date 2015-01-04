@@ -1,9 +1,12 @@
 package light;
 
 import color.Color;
+import geometry.Hit;
 import java.util.Objects;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import raytracer.Ray;
+import world.World;
 
 /**
  * represents a spotlight
@@ -32,16 +35,35 @@ public class SpotLight extends Light{
      * @param direction of light
      * @param halfAngle of light
      * @param color of light
+     * @param castsShadows boolean for shadow
      */
-    public SpotLight(final Point3 position, final Vector3 direction, final double halfAngle, final Color color) {
-        super(color);
+    public SpotLight(final Point3 position, final Vector3 direction, final double halfAngle, final Color color, final boolean castsShadows) {
+        super(color, castsShadows);
         this.position = position;
         this.direction = direction;
         this.halfAngle = halfAngle;
     }
 
     @Override
-    public boolean illuminates(final Point3 point) {
+    public boolean illuminates(final Point3 point, final World world) {
+        
+        if(this.castsShadows){
+            
+            // new ray from given point to light
+            final Ray ray = new Ray(point, directionFrom(point));
+            
+            // search for hit with ray
+            final Hit hit= world.hit(ray);
+            
+            // if no hit: point must be illuminated
+            if(hit == null){
+                return true;
+            }
+            
+            // if t>=tl no shadow: point must be illuminated
+            return hit.t >= ray.tOf(position);
+        }
+        
         // cos (gamma) = a*b/|a|*|b|  --> a,b normalized |a|*|b|=1, can drop /|a|*|b|
         Vector3 a = directionFrom(point).mul(-1);
         Vector3 b = direction.normalized();

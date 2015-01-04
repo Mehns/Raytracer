@@ -1,9 +1,12 @@
 package light;
 
 import color.Color;
+import geometry.Hit;
 import java.util.Objects;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import raytracer.Ray;
+import world.World;
 
 /**
  * represents a directionallight
@@ -20,14 +23,26 @@ public class DirectionalLight extends Light{
      * constructs new DirectionalLight
      * @param direction of light
      * @param color of light
+     * @param castsShadows boolean for shadow
      */
-    public DirectionalLight(final Vector3 direction, final Color color) {
-        super(color);
+    public DirectionalLight(final Vector3 direction, final Color color, final boolean castsShadows) {
+        super(color, castsShadows);
         this.direction = direction;
     }
 
     @Override
-    public boolean illuminates(final Point3 point) {
+    public boolean illuminates(final Point3 point, final World world) {
+        if(this.castsShadows){
+            
+            // new ray from given point to light
+            final Ray ray = new Ray(point, directionFrom(point));
+            
+            // search for hit with ray
+            final Hit hit= world.hit(ray);
+            
+            // if no hit: point must be illuminated
+            return hit == null;
+        }
         return true;
     }
 
