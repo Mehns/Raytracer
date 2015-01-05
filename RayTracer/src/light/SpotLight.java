@@ -50,19 +50,16 @@ public class SpotLight extends Light{
         if(this.castsShadows){
             
             // new ray from given point to light
-            final Ray ray = new Ray(point, directionFrom(point));
+            final Ray ray = new Ray(point.add(directionFrom(point).mul(0.0001)), directionFrom(point));
             
             // search for hit with ray
             final Hit hit= world.hit(ray);
-            
-            // if no hit: point must be illuminated
-            if(hit == null){
-                return true;
+                       
+            // if hit and t<tl: shadow
+            if(hit != null && hit.t < ray.tOf(position)){
+                return false;
             }
-            
-            // if t>=tl no shadow: point must be illuminated
-            return hit.t >= ray.tOf(position);
-        }
+        } 
         
         // cos (gamma) = a*b/|a|*|b|  --> a,b normalized |a|*|b|=1, can drop /|a|*|b|
         Vector3 a = directionFrom(point).mul(-1);

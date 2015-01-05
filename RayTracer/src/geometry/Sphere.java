@@ -48,15 +48,18 @@ public class Sphere extends Geometry{
     @Override
     public Hit hit(final Ray r) {
 
-        double a = r.d.dot(r.d);
-        double b = r.d.dot((r.o.sub(c)).mul(2.0));
-        double c = r.o.sub(this.c).dot(r.o.sub(this.c))-(this.r*this.r);
+        final double a = r.d.dot(r.d);
+        final double b = r.d.dot((r.o.sub(c)).mul(2.0));
+        final double c = r.o.sub(this.c).dot(r.o.sub(this.c))-(this.r*this.r);
         
-        double d = (b*b)-(4*a*c);
+        final double d = (b*b)-(4*a*c);
         
         if(d>=0.0){
-            double x1 = (-b+Math.sqrt(d))/(2*a);
-            double x2 = (-b-Math.sqrt(d))/(2*a);
+            final double x1 = (-b+Math.sqrt(d))/(2*a);
+            final double x2 = (-b-Math.sqrt(d))/(2*a);
+            
+            if (x1 < 0.0001 && x2 < 0.0001) return null;
+            
             double t = Math.min(x1, x2);
             if(t < 0.0){
                 t = Math.max(x1, x2);

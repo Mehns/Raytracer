@@ -35,7 +35,8 @@ public class PointLight extends Light{
         if(this.castsShadows){
             
             // new ray from given point to light
-            final Ray ray = new Ray(point, directionFrom(point));
+            //final Ray ray = new Ray(point, directionFrom(point));
+            final Ray ray = new Ray(point.add(directionFrom(point).mul(0.0001)), directionFrom(point));
             
             // search for hit with ray
             final Hit hit= world.hit(ray);

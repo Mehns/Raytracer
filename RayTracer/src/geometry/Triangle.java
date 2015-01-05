@@ -102,7 +102,7 @@ public class Triangle extends Geometry{
        
         final double t = matA3.determinant/matA.determinant;
         
-        if(barBeta < 0.0 || barGamma < 0.0 || t < 0.0 || barBeta+barGamma > 1.0){
+        if(barBeta < 0.0 || barGamma < 0.0 || t < 0.0001 || barBeta+barGamma > 1.0){
             return null;
         }
         
