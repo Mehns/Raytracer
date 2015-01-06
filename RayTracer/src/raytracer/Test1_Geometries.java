@@ -18,12 +18,12 @@ import mathlibrary.Vector3;
  * creates 4 Frames with given images
  * @author Lena
  */
-public class TestRay {
+public class Test1_Geometries {
     
     /**
      * creates 4 Frames with given geometries and cameras
      */
-    public TestRay(){
+    public Test1_Geometries(){
         //Test1
         Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new Color(0,1,0));
         ArrayList list1 = new ArrayList();
@@ -89,7 +89,7 @@ public class TestRay {
      * @param args 
      */
     public static void main(String[] args) {
-        new TestRay();
+        new Test1_Geometries();
     }
     
 }

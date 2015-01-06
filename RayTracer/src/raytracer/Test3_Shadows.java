@@ -20,12 +20,12 @@ import mathlibrary.Vector3;
 import world.World;
 
 /**
- *
+ * Test class for task 4 - shadows
  * @author Lena
  */
-class TestRay3 {
+class Test3_Shadows {
 
-    public TestRay3() {
+    public Test3_Shadows() {
         final Plane plane = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new Color(0.8,0.8,0.8)));
         final AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new Color(1,0,0)));
         

@@ -28,7 +28,7 @@ public class LambertMaterial extends Material{
     }
 
     @Override
-    public Color colorFor(final Hit hit, final World world) {
+    public Color colorFor(final Hit hit, final World world, Tracer tracer) {
         Normal3 hitNormal = hit.normal;
         Color totalColor = this.color.mul(world.ambientColor);
                 

@@ -25,7 +25,7 @@ public class SingleColorMaterial extends Material{
     }
     
     @Override
-    public Color colorFor(final Hit hit, final World world) {
+    public Color colorFor(final Hit hit, final World world, Tracer tracer) {
         return color;
     }
 

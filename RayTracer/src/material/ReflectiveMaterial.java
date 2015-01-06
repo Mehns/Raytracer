@@ -11,13 +11,14 @@ import light.Light;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import raytracer.Ray;
 import world.World;
 
 /**
  *
  * @author Lena
  */
-public abstract class ReflectiveMaterial extends Material{
+public class ReflectiveMaterial extends Material{
 
     /**
      * color of the material
@@ -53,26 +54,29 @@ public abstract class ReflectiveMaterial extends Material{
         this.reflection = reflection;
     }
     
+    @Override
     public Color colorFor(Hit hit, World world, Tracer tracer) {
-        Normal3 hitNormal = hit.normal;
+        final Normal3 hitNormal = hit.normal;
         Color totalColor = this.diffuse.mul(world.ambientColor);
                 
-        Point3 pointHit = hit.ray.at(hit.t);
+        final Point3 pointOfHit = hit.ray.at(hit.t);
         
         for(Light light: world.lightList){
-            if(light.illuminates(pointHit, world)){
-                Vector3 l = light.directionFrom(pointHit).normalized();
-                Vector3 r = l.reflectedOn(hitNormal);
+            if(light.illuminates(pointOfHit, world)){
+                final Vector3 l = light.directionFrom(pointOfHit).normalized();
+                final Vector3 r = l.reflectedOn(hitNormal);
                 
-                double max = Math.max(0.0, l.dot(hitNormal));
-                double max2 = Math.pow(Math.max(0.0, hit.ray.d.mul(-1).dot(r)), this.exponent);
+                final double max = Math.max(0.0, l.dot(hitNormal));
+                final double max2 = Math.pow(Math.max(0.0, hit.ray.d.mul(-1).dot(r)), this.exponent);
                 
-                Color lightColor = light.color;
+                final Color lightColor = light.color;
                 totalColor = totalColor.add(diffuse.mul(lightColor).mul(max).
                                         add(specular.mul(lightColor).mul(max2)));
             }
         }
-        return totalColor;
+        final Vector3 rd = hit.ray.d.mul(-1).reflectedOn(hitNormal);
+        final Color reflect = tracer.colorFor(new Ray(pointOfHit, rd)).mul(reflection);
+        return totalColor.add(reflect);
     }
     
 }

@@ -6,6 +6,7 @@ import java.awt.Canvas;
 import color.Color;
 import geometry.Geometry;
 import geometry.Hit;
+import material.Tracer;
 
 
 import java.awt.Graphics;
@@ -82,12 +83,12 @@ public class ImageCanvas extends Canvas {
                 if (hit == null || hit.geo == null) {
                     color = backColor;
                 } else {
-                    color = hit.geo.material.colorFor(hit,world);
+                    color = hit.geo.material.colorFor(hit, world, new Tracer(world, 6));
                 }
 
                 java.awt.Color convertColor = new java.awt.Color((float)color.r, 
-                                                               (float)color.g, 
-                                                               (float)color.b);
+                                                                 (float)color.g, 
+                                                                 (float)color.b);
                 
                 raster.setDataElements(x, image.getHeight() -1 - y, colorModel.getDataElements(convertColor.getRGB(), null));
                                 

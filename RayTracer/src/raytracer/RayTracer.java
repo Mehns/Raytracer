@@ -63,9 +63,10 @@ public class RayTracer extends JFrame{
 //    }
 
     public static void main(String[] args){
-//        TestRay test1_Exercise2 = new TestRay();
-        TestRay2 test2_Exercise3 = new TestRay2();
-        TestRay3 test3_Exercise4 = new TestRay3();
+//        Test1_Geometries test1 = new Test1_Geometries();
+//        Test2_Light test2 = new Test2_Light();
+//        Test3_Shadows test3 = new Test3_Shadows();
+        Test4_ReflectiveMaterial test4 = new Test4_ReflectiveMaterial();
     }
     
     @Override

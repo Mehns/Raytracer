@@ -43,7 +43,7 @@ public class BlinnPhongMaterial extends Material{
     }
     
     @Override
-    public Color colorFor(final Hit hit, final World world) {
+    public Color colorFor(final Hit hit, final World world, Tracer tracer) {
         Color totalColor = this.diffuse.mul(world.ambientColor);
         
         Point3 pointHit = hit.ray.at(hit.t);
