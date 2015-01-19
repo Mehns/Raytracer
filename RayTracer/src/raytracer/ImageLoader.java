@@ -35,7 +35,7 @@ public class ImageLoader extends JFrame{
         final int returnValue = chooser.showOpenDialog(null);            
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             final File file = chooser.getSelectedFile();
-            this.setTitle(chooser.getName(file));
+            this.setTitle(chooser.getName(file) + "1");
             
             try {
                 image = ImageIO.read(file);
