@@ -23,7 +23,7 @@ public class Sphere extends Geometry{
     public final double r;
 
     /**
-     * Constructs a Sphere
+     * Constructs a Sphere with color
      * @param c Point with 3 coordinates
      * @param r radius of Sphere
      * @param color defines the color of the Sphere
@@ -34,10 +34,26 @@ public class Sphere extends Geometry{
         this.r = r;
     }
     
+    /**
+     * Constructs a Sphere with material
+     * @param c Point with 3 coordinates
+     * @param r radius of Sphere
+     * @param material defines the material of the Sphere
+     */
     public Sphere(final Point3 c, final double r, final Material material) {
         super(material);
         this.c = c;
         this.r = r;
+    }
+    
+    /**
+     * Constructs a Sphere with material
+     * @param material defines the material of the Sphere
+     */
+    public Sphere(final Material material) {
+        super(material);
+        this.c = new Point3(0,0,0);
+        this.r = 1;
     }
 
     /**

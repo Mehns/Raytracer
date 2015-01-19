@@ -1,6 +1,7 @@
 package mathlibrary;
 
 import java.util.Objects;
+import raytracer.Ray;
 
 /**
  *
@@ -132,6 +133,26 @@ public class Transform {
                                0.0, 0.0, 1.0, 0.0,
                                0.0, 0.0, 0.0, 1.0);
         return new Transform(m.mul(tm), ti.mul(i));
+    }
+    
+    /**
+     * transforms a ray
+     * multiplies the origin and the direction with the inverse
+     * @param r the ray to transform
+     * @return transformed ray
+     */
+    public Ray mul(final Ray r) {
+        return new Ray(i.mul(r.o), i.mul(r.d));
+    }
+
+    /**
+     * transforms a normal 
+     * multiplies it with the transposed inverse
+     * @param n normal to transform
+     * @return transformed normal
+     */
+    public Normal3 mul(final Normal3 n) {
+        return (i.transposed().mul(new Vector3(n.x, n.y, n.z)).normalized().asNormal());
     }
 
     @Override

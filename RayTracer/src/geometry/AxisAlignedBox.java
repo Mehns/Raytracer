@@ -122,6 +122,30 @@ public class AxisAlignedBox extends Geometry {
         planeList.add(top);
         planeList.add(bottom);
     }
+    
+    public AxisAlignedBox(final Material material) {
+        super(material);
+        this.lbf = new Point3(-0.5,-0.5,-0.5);
+        this.run = new Point3(0.5,0.5,0.5);
+        
+        leftFront = new Plane(run, new Normal3(0, 0, 1), material);
+        rightBack = new Plane(lbf, new Normal3(0, 0, -1), material);
+
+        rightFront = new Plane(run, new Normal3(1, 0, 0), material);
+        leftBack = new Plane(lbf, new Normal3(-1, 0, 0), material);
+
+        top = new Plane(run, new Normal3(0, 1, 0), material);
+        bottom = new Plane(lbf, new Normal3(0, -1, 0), material);
+
+        planeList.add(leftFront);
+        planeList.add(rightBack);
+
+        planeList.add(rightFront);
+        planeList.add(leftBack);
+
+        planeList.add(top);
+        planeList.add(bottom);
+    }
 
     @Override
     public Hit hit(final Ray r) {

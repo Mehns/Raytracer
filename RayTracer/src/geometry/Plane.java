@@ -40,6 +40,12 @@ public class Plane extends Geometry{
         this.a = a;
         this.n = n;
     }
+    
+    public Plane(final Material material){
+        super(material);
+        this.a = new Point3(0,0,0);
+        this.n = new Normal3(0,1,0);
+    }
 
     /**
      * calculates if and where ray and plane hit
