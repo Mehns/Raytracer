@@ -31,15 +31,15 @@ public class RaytracerGUI {
     
     final JMenuBar menu = new JMenuBar();
     
-    private JMenu file = new JMenu("Test 1");
+    private JMenu file = new JMenu("Geometries");
     
-    private JMenu file2 = new JMenu("Test 2");
+    private JMenu file2 = new JMenu("Lights");
 
-    private JMenu file3 = new JMenu("Test 3");
+    private JMenu file3 = new JMenu("Shadow");
 
-    private JMenu file4 = new JMenu("Test 4");
+    private JMenu file4 = new JMenu("Reflection");
 
-    private JMenu file5 = new JMenu("Test 5");
+    private JMenu file5 = new JMenu("Transformation");
     
     
     public RaytracerGUI(){
