@@ -23,23 +23,41 @@ import world.World;
  * @author Lena
  */
 public class Test5_Transformation {
-
-    public Test5_Transformation(){
-
-        PerspectiveCamera camera1 = new PerspectiveCamera(new Point3(8, 8, 8), 
-                                                      new Vector3(-1, -1, -1), 
-                                                      new Vector3(0, 1, 0), 
-                                                      Math.PI/4);
-        
-        PerspectiveCamera camera2 = new PerspectiveCamera(new Point3(4, 4, 4), 
-                                                      new Vector3(-1, -1, -1), 
-                                                      new Vector3(0, 1, 0), 
-                                                      Math.PI/4);
-        
-        PointLight pointLight = new PointLight(new Point3(8, 8, 8), new Color(1,1,1), false);
-        ArrayList lightList = new ArrayList();
-            lightList.add(pointLight);
+    
+    final PerspectiveCamera camera1;
+    
+    final PerspectiveCamera camera2;
+    
+    final PointLight pointLight;
+    
+    final ArrayList lightList;
             
+    
+    public Test5_Transformation(){
+        
+        this.pointLight = new PointLight(new Point3(8, 8, 8), new Color(1,1,1), false);
+        
+        this.lightList = new ArrayList();
+        lightList.add(pointLight);
+        
+        this.camera2 = new PerspectiveCamera(new Point3(4, 4, 4), 
+                new Vector3(-1, -1, -1),
+                new Vector3(0, 1, 0),
+                Math.PI/4);
+        
+        this.camera1 = new PerspectiveCamera(new Point3(8, 8, 8), 
+                new Vector3(-1, -1, -1),
+                new Vector3(0, 1, 0),
+                Math.PI/4);
+     }
+    
+    public void startAll(){
+        sphere();
+        box();
+    }
+    
+    public void sphere(){
+        
         Sphere sphere = new Sphere(new BlinnPhongMaterial(new Color(1,0,0), new Color(1,1,1), 64));
         ArrayList geoList1 = new ArrayList();
             geoList1.add(sphere);
@@ -54,6 +72,10 @@ public class Test5_Transformation {
         
         RayTracer raytracer1 = new RayTracer(world1, camera1);
         
+    }
+    
+    public void box() {
+        
         AxisAlignedBox box = new AxisAlignedBox(new BlinnPhongMaterial(new Color(1,1,0), new Color(1,1,1), 64));
         ArrayList geoList2 = new ArrayList();
             geoList2.add(box);
@@ -67,5 +89,13 @@ public class Test5_Transformation {
         World world2 = new World(geoListBox, lightList, new Color(0, 0, 0));
         
         RayTracer raytracer2 = new RayTracer(world2, camera2);
-     }
+    }
+    
+    /**
+     * starts Test
+     * @param args 
+     */
+    public static void main(String[] args) {
+        new Test5_Transformation();
+    }
 }

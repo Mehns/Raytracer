@@ -24,6 +24,19 @@ public class Test1_Geometries {
      * creates 4 Frames with given geometries and cameras
      */
     public Test1_Geometries(){
+        
+    }
+    
+    public void startAll(){
+        test1();
+        test2();
+        test3();
+        test4();
+        test5();
+        test6();
+    }
+    
+    public void test1(){
         //Test1
         Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new Color(0,1,0));
         ArrayList list1 = new ArrayList();
@@ -32,7 +45,9 @@ public class Test1_Geometries {
         PerspectiveCamera cam1 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
         
         RayTracer rayTracer1 = new RayTracer(world1, cam1);
-        
+    }
+    
+    public void test2(){
         //Test2
         Sphere sphere = new Sphere(new Point3(0,0,-3),0.5,new Color(1,0,0));
         ArrayList list2 = new ArrayList();
@@ -42,6 +57,9 @@ public class Test1_Geometries {
         
         RayTracer rayTracer2 = new RayTracer(world2, cam2);
         
+    }
+    
+    public void test3(){
         //Test3
         Sphere sphere3_1 = new Sphere(new Point3(-1,0,-3),0.5,new Color(1,0,0));
         Sphere sphere3_2 = new Sphere(new Point3( 1,0,-6),0.5,new Color(1,0,0));
@@ -53,6 +71,9 @@ public class Test1_Geometries {
         
         RayTracer rayTracer3 = new RayTracer(world3, cam3);
         
+    }
+    
+    public void test4(){
         //Test4
         Sphere sphere4_1 = new Sphere(new Point3(-1,0,-3),0.5,new Color(1,0,0));
         Sphere sphere4_2 = new Sphere(new Point3( 1,0,-6),0.5,new Color(1,0,0));
@@ -63,7 +84,10 @@ public class Test1_Geometries {
         OrthographicCamera cam4 = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),3);
         
         RayTracer rayTracer4 = new RayTracer(world4, cam4);
-
+        
+    }
+    
+    public void test5(){
         //Test5 Triangle
         Triangle tri = new Triangle(new Vector3(-0.5,0.5,-3), new Vector3(0.5,0.5,-3), new Vector3(0.5,-0.5,-3), new Color(1,0,1));
         ArrayList list5 = new ArrayList();
@@ -73,6 +97,9 @@ public class Test1_Geometries {
         
         RayTracer rayTracer5 = new RayTracer(world5, cam5);
         
+    }
+    
+    public void test6(){
         //Test6 AAB
         AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5),new Color(0,0,1));
         ArrayList list6 = new ArrayList();
@@ -81,7 +108,7 @@ public class Test1_Geometries {
         PerspectiveCamera cam6 = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0),Math.PI/4);
         
         RayTracer rayTracer6 = new RayTracer(world6, cam6);
-
+        
     }
     
     /**

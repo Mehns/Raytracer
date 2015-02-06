@@ -31,7 +31,7 @@ public class ImageLoader extends JFrame{
         chooser.setFileFilter(filter);
         chooser.setMultiSelectionEnabled(false);
         
-        // loads Image if user has choosen the right format
+        // loads Image if user has chosen the right format
         final int returnValue = chooser.showOpenDialog(null);            
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             final File file = chooser.getSelectedFile();
