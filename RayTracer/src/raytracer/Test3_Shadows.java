@@ -17,6 +17,7 @@ import material.LambertMaterial;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import texture.SingleColorTexture;
 import world.World;
 
 /**
@@ -26,8 +27,8 @@ import world.World;
 public class Test3_Shadows {
 
     public Test3_Shadows() {
-        final Plane plane = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new Color(0.8,0.8,0.8)));
-        final AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new Color(1,0,0)));
+        final Plane plane = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new SingleColorTexture(new Color(0.8,0.8,0.8))));
+        final AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new SingleColorTexture(new Color(1,0,0))));
         
         //final Sphere s = new Sphere(new Point3(0.5,1,0.5), 0.5, new LambertMaterial(new Color(1,0,0)));
         

@@ -23,6 +23,7 @@ import material.PhongMaterial;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import texture.SingleColorTexture;
 
 /**
  * Test class for task 3 - lights
@@ -90,22 +91,30 @@ public class Test2_Light {
         this.yellow = new Color(1,1,0);
         
         
-        this.matGreen = new LambertMaterial(green);
-        this.matRed = new LambertMaterial(red);
-        this.matBlue = new LambertMaterial(blue);
-        this.matYellow = new LambertMaterial(yellow);
+        this.matGreen = new LambertMaterial(new SingleColorTexture(green));
+        this.matRed = new LambertMaterial(new SingleColorTexture(red));
+        this.matBlue = new LambertMaterial(new SingleColorTexture(blue));
+        this.matYellow = new LambertMaterial(new SingleColorTexture(yellow));
         
         
-        this.matPhongBlue = new PhongMaterial(blue, white,64);
-        this.matPhongGreen = new PhongMaterial(green, white,64);
-        this.matPhongRed = new PhongMaterial(red, white,64);
-        this.matPhongYellow = new PhongMaterial(yellow, white,64);
+        this.matPhongBlue = new PhongMaterial(new SingleColorTexture(blue),
+                                        new SingleColorTexture(white), 64);
+        this.matPhongGreen = new PhongMaterial(new SingleColorTexture(green),
+                                        new SingleColorTexture(white), 64);
+        this.matPhongRed = new PhongMaterial(new SingleColorTexture(red),
+                                    new SingleColorTexture(white), 64);
+        this.matPhongYellow = new PhongMaterial(new SingleColorTexture(yellow),
+                                    new SingleColorTexture(white), 64);
         
         
-        this.matBlinnPhongBlue = new BlinnPhongMaterial(blue, white, 64);
-        this.matBlinnPhongGreen = new BlinnPhongMaterial(green, white, 64);
-        this.matBlinnPhongRed = new BlinnPhongMaterial(red, white, 64);
-        this.matBlinnPhongYellow = new BlinnPhongMaterial(yellow, white, 64);
+        this.matBlinnPhongBlue = new BlinnPhongMaterial(new SingleColorTexture(blue),
+                                        new SingleColorTexture(white), 64);
+        this.matBlinnPhongGreen = new BlinnPhongMaterial(new SingleColorTexture(green),
+                                        new SingleColorTexture(white), 64);
+        this.matBlinnPhongRed = new BlinnPhongMaterial(new SingleColorTexture(red),
+                                    new SingleColorTexture(white), 64);
+        this.matBlinnPhongYellow = new BlinnPhongMaterial(new SingleColorTexture(yellow),
+                                    new SingleColorTexture(white), 64);
         
         
         this.pointLight = new PointLight(new Point3(4, 4, 4), white, false);

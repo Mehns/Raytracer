@@ -16,6 +16,7 @@ import material.ReflectiveMaterial;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import texture.SingleColorTexture;
 import world.World;
 
 /**
@@ -24,19 +25,26 @@ import world.World;
  */
 public class Test4_ReflectiveMaterial {
     public Test4_ReflectiveMaterial(){
-        final Plane plane = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial(new Color(0.1,0.1,0.1), 
-                                                                                                    new Color(0,0,0), 64, 
-                                                                                                    new Color(0.5,0.5,0.5)));
         
-        final Sphere sphereRed = new Sphere(new Point3(-3,1,0), 1, new ReflectiveMaterial(new Color(1,0,0), 
-                                                                                  new Color(1,1,1), 64, 
-                                                                                  new Color(0.5,0.5,0.5)));
-        final Sphere sphereGreen = new Sphere(new Point3(0,1,0), 1, new ReflectiveMaterial(new Color(0,1,0), 
-                                                                                  new Color(1,1,1), 64, 
-                                                                                  new Color(0.5,0.5,0.5)));
-        final Sphere sphereBlue = new Sphere(new Point3(3,1,0), 1, new ReflectiveMaterial(new Color(0,0,1), 
-                                                                                  new Color(1,1,1), 64, 
-                                                                                  new Color(0.5,0.5,0.5)));
+        SingleColorTexture red = new SingleColorTexture(new Color(1,0,0));
+        SingleColorTexture green = new SingleColorTexture(new Color(0,1,0));
+        SingleColorTexture blue = new SingleColorTexture(new Color(0,0,1));
+        SingleColorTexture darkGrey = new SingleColorTexture(new Color(0.1,0.1,0.1));
+        SingleColorTexture grey = new SingleColorTexture(new Color(0.5,0.5,0.5));
+        SingleColorTexture black = new SingleColorTexture(new Color(0,0,0));
+        SingleColorTexture white = new SingleColorTexture(new Color(1,1,1));
+        
+        ReflectiveMaterial darkReflMat = new ReflectiveMaterial(darkGrey, black,64,grey);  
+        ReflectiveMaterial redReflMat = new ReflectiveMaterial(red, black,64,grey);  
+        ReflectiveMaterial greenReflMat = new ReflectiveMaterial(green, black,64,grey);  
+        ReflectiveMaterial blueReflMat = new ReflectiveMaterial(blue, black,64,grey);  
+        
+        
+        final Plane plane = new Plane(new Point3(0,0,0), new Normal3(0,1,0), darkReflMat);
+        
+        final Sphere sphereRed = new Sphere(new Point3(-3,1,0), 1, redReflMat);
+        final Sphere sphereGreen = new Sphere(new Point3(0,1,0), 1, greenReflMat);
+        final Sphere sphereBlue = new Sphere(new Point3(3,1,0), 1, blueReflMat);
         
         ArrayList geoList = new ArrayList();
             geoList.add(plane);

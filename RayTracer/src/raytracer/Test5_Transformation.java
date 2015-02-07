@@ -16,6 +16,7 @@ import material.BlinnPhongMaterial;
 import mathlibrary.Point3;
 import mathlibrary.Transform;
 import mathlibrary.Vector3;
+import texture.SingleColorTexture;
 import world.World;
 
 /**
@@ -58,7 +59,8 @@ public class Test5_Transformation {
     
     public void sphere(){
         
-        Sphere sphere = new Sphere(new BlinnPhongMaterial(new Color(1,0,0), new Color(1,1,1), 64));
+        Sphere sphere = new Sphere(new BlinnPhongMaterial(new SingleColorTexture(new Color(1,0,0)), 
+                        new SingleColorTexture(new Color(1,1,1)), 64));
         ArrayList geoList1 = new ArrayList();
             geoList1.add(sphere);
         
@@ -76,7 +78,8 @@ public class Test5_Transformation {
     
     public void box() {
         
-        AxisAlignedBox box = new AxisAlignedBox(new BlinnPhongMaterial(new Color(1,1,0), new Color(1,1,1), 64));
+        AxisAlignedBox box = new AxisAlignedBox(new BlinnPhongMaterial(new SingleColorTexture(new Color(1,1,0)), 
+                                new SingleColorTexture(new Color(1,1,1)), 64));
         ArrayList geoList2 = new ArrayList();
             geoList2.add(box);
             
