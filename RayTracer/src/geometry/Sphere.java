@@ -4,7 +4,9 @@ import color.Color;
 import material.Material;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
+import mathlibrary.Vector3;
 import raytracer.Ray;
+import texture.TexCoord2;
 
 /**
  * represents a sphere
@@ -81,9 +83,17 @@ public class Sphere extends Geometry{
                 t = Math.max(x1, x2);
             }
             Normal3 normal = r.at(t).sub(this.c).normalized().asNormal();
-            return new Hit(t,r,this,normal);
+            TexCoord2 texCoord = getTextureCoordinate(r.at(t));
+            return new Hit(t,r,this,normal,texCoord);
         }        
         return null;
+    }
+    
+    private TexCoord2 getTextureCoordinate(Point3 point){
+        Vector3 d = new Vector3(point.x, point.y, point.z);
+        double theta = Math.acos(d.y);
+        double phi = Math.atan2(d.x, d.z);
+        return new TexCoord2(phi / (Math.PI*2), -(theta/Math.PI));
     }
     
     

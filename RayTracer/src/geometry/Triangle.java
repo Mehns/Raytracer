@@ -7,6 +7,7 @@ import mathlibrary.Mat3x3;
 import mathlibrary.Normal3;
 import mathlibrary.Vector3;
 import raytracer.Ray;
+import texture.TexCoord2;
 
 /**
  *
@@ -108,7 +109,10 @@ public class Triangle extends Geometry{
         
         final Normal3 n = na.mul(barAlpha).add(nb.mul(barBeta)).add(nc.mul(barGamma));
         
-        return new Hit(t,r,this,n);
+        //not imlemented yet
+        TexCoord2 texCoord = new TexCoord2(0.0, 0.0);
+        
+        return new Hit(t,r,this,n,texCoord);
     }
 
     @Override

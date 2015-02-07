@@ -4,6 +4,7 @@ import color.Color;
 import material.Material;
 import material.SingleColorMaterial;
 import raytracer.Ray;
+import texture.SingleColorTexture;
 
 /**
  * Basis geometry class 
@@ -17,7 +18,7 @@ public abstract class Geometry {
     public final Material material;
     
     public static final Material BASE_MATERIAL = new SingleColorMaterial(
-                                                        new Color(0.5,0.5,0.5));
+                                                        new SingleColorTexture(new Color(0.5,0.5,0.5)));
     
     /**
      * Constructor of class Geometry
@@ -42,7 +43,7 @@ public abstract class Geometry {
      * @param color defines the color of geometry
      */
     public Geometry(final Color color) {
-        this.material = new SingleColorMaterial(color);
+        this.material = new SingleColorMaterial(new SingleColorTexture(color));
     }
     
     /**

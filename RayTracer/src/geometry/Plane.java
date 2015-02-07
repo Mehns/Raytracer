@@ -6,6 +6,7 @@ import material.Material;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import raytracer.Ray;
+import texture.TexCoord2;
 
 /**
  * represents a plane
@@ -60,7 +61,9 @@ public class Plane extends Geometry{
             if (t < 0.0001) {
                 return null;
             }
-            return new Hit(t,r,this,n);
+            TexCoord2 texCoord = new TexCoord2(r.at(t).x, -(r.at(t).z));
+            
+            return new Hit(t,r,this,n,texCoord);
         }
         return null;
     }

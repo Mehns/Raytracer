@@ -50,7 +50,7 @@ public class Node extends Geometry{
         if (minimalHit == null) {
             return null;
         }
-        return new Hit(minimalHit.t, ray, minimalHit.geo, transform.mul(minimalHit.normal));
+        return new Hit(minimalHit.t, ray, minimalHit.geo, transform.mul(minimalHit.normal), minimalHit.texCoord);
     }
     
 }
