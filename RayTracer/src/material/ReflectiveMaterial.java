@@ -12,6 +12,7 @@ import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
 import raytracer.Ray;
+import texture.Texture;
 import world.World;
 
 /**
@@ -23,12 +24,12 @@ public class ReflectiveMaterial extends Material{
     /**
      * color of the material
      */
-    public final Color diffuse;
+    public final Texture diffuse;
     
     /**
      * color of glossy reflection
      */
-    public final Color specular;
+    public final Texture specular;
     
     /**
      * intensity of the glossy reflection
@@ -38,7 +39,7 @@ public class ReflectiveMaterial extends Material{
     /**
      * color of geometry reflection
      */
-    public final Color reflection;
+    public final Texture reflection;
 
     /**
      * creates an instance of a Reflective Material
@@ -47,7 +48,7 @@ public class ReflectiveMaterial extends Material{
      * @param exponent intensity of the glossy reflection
      * @param reflection color of geometry reflection
      */
-    public ReflectiveMaterial(Color diffuse, Color specular, int exponent, Color reflection) {
+    public ReflectiveMaterial(Texture diffuse, Texture specular, int exponent, Texture reflection) {
         this.diffuse = diffuse;
         this.specular = specular;
         this.exponent = exponent;
@@ -57,7 +58,12 @@ public class ReflectiveMaterial extends Material{
     @Override
     public Color colorFor(Hit hit, World world, Tracer tracer) {
         final Normal3 hitNormal = hit.normal;
-        Color totalColor = this.diffuse.mul(world.ambientColor);
+        final double uCoord = hit.texCoord.u;
+        final double vCoord = hit.texCoord.v;
+        
+        final Color difColor = this.diffuse.getColor(uCoord, vCoord);
+        final Color specColor = this.diffuse.getColor(uCoord, vCoord);
+        Color totalColor = difColor.mul(world.ambientColor);
                 
         final Point3 pointOfHit = hit.ray.at(hit.t);
         
@@ -70,12 +76,12 @@ public class ReflectiveMaterial extends Material{
                 final double max2 = Math.pow(Math.max(0.0, hit.ray.d.mul(-1).dot(r)), this.exponent);
                 
                 final Color lightColor = light.color;
-                totalColor = totalColor.add(diffuse.mul(lightColor).mul(max).
-                                        add(specular.mul(lightColor).mul(max2)));
+                totalColor = totalColor.add(difColor.mul(lightColor).mul(max).
+                                        add(specColor.mul(lightColor).mul(max2)));
             }
         }
         final Vector3 rd = hit.ray.d.mul(-1).reflectedOn(hitNormal);
-        final Color reflect = tracer.colorFor(new Ray(pointOfHit, rd)).mul(reflection);
+        final Color reflect = tracer.colorFor(new Ray(pointOfHit, rd)).mul(reflection.getColor(uCoord, vCoord));
         return totalColor.add(reflect);
     }
     

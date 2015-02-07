@@ -3,6 +3,8 @@ package material;
 import color.Color;
 import geometry.Hit;
 import java.util.Objects;
+import static javafx.scene.paint.Color.color;
+import texture.Texture;
 import world.World;
 
 /**
@@ -12,32 +14,35 @@ import world.World;
 public class SingleColorMaterial extends Material{
 
     /**
-     * Color of Material
+     * diffuse texture of Material
      */
-    public final Color color;
+    public final Texture diffuse;
     
     /**
      * Constructor of SingleColorMaterial
-     * @param color Color of material
+     * @param diffuse diffuse texture of material
      */
-    public SingleColorMaterial(final Color color){
-        this.color = color;
+    public SingleColorMaterial(final Texture diffuse){
+        this.diffuse = diffuse;
     }
     
     @Override
     public Color colorFor(final Hit hit, final World world, Tracer tracer) {
-        return color;
+        final double uCoord = hit.texCoord.u;
+        final double vCoord = hit.texCoord.v;        
+        
+        return diffuse.getColor(uCoord, vCoord);
     }
 
     @Override
     public String toString() {
-        return "SingleColorMaterial{" + "color=" + color + '}';
+        return "SingleColorMaterial{" + "color=" + diffuse + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.color);
+        hash = 97 * hash + Objects.hashCode(this.diffuse);
         return hash;
     }
 
@@ -50,7 +55,7 @@ public class SingleColorMaterial extends Material{
             return false;
         }
         final SingleColorMaterial other = (SingleColorMaterial) obj;
-        if (!Objects.equals(this.color, other.color)) {
+        if (!Objects.equals(this.diffuse, other.diffuse)) {
             return false;
         }
         return true;

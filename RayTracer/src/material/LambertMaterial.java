@@ -3,10 +3,12 @@ package material;
 import color.Color;
 import geometry.Hit;
 import java.util.Objects;
+import static javafx.scene.paint.Color.color;
 import light.Light;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import texture.Texture;
 import world.World;
 
 /**
@@ -17,20 +19,25 @@ public class LambertMaterial extends Material{
     /**
      * color of material
      */
-    public final Color color;
+    public final Texture diffuse;
     
     /**
      * creates an instance of a lambert material
-     * @param color the color of the material
+     * @param diffuse the diffuse texture of the material
      */
-    public LambertMaterial(final Color color){
-        this.color = color;
+    public LambertMaterial(final Texture diffuse){
+        this.diffuse = diffuse;
     }
 
     @Override
     public Color colorFor(final Hit hit, final World world, Tracer tracer) {
         Normal3 hitNormal = hit.normal;
-        Color totalColor = this.color.mul(world.ambientColor);
+        
+        final double uCoord = hit.texCoord.u;
+        final double vCoord = hit.texCoord.v;
+        
+        final Color difColor = this.diffuse.getColor(uCoord, vCoord);
+        Color totalColor = difColor.mul(world.ambientColor);
                 
         Point3 pointHit = hit.ray.at(hit.t);
         
@@ -39,7 +46,7 @@ public class LambertMaterial extends Material{
                 Vector3 l = light.directionFrom(pointHit).normalized();
                 double max = Math.max(0.0, l.dot(hitNormal));
                 Color lightColor = light.color;
-                totalColor = totalColor.add(color.mul(lightColor).mul(max));
+                totalColor = totalColor.add(difColor.mul(lightColor).mul(max));
             }
         }
         return totalColor;
@@ -47,13 +54,13 @@ public class LambertMaterial extends Material{
 
     @Override
     public String toString() {
-        return "LambertMaterial{" + "color=" + color + '}';
+        return "LambertMaterial{" + "color=" + diffuse + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.color);
+        hash = 67 * hash + Objects.hashCode(this.diffuse);
         return hash;
     }
 
@@ -66,7 +73,7 @@ public class LambertMaterial extends Material{
             return false;
         }
         final LambertMaterial other = (LambertMaterial) obj;
-        if (!Objects.equals(this.color, other.color)) {
+        if (!Objects.equals(this.diffuse, other.diffuse)) {
             return false;
         }
         return true;

@@ -7,6 +7,7 @@ import light.Light;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import texture.Texture;
 import world.World;
 /**
  * represents a Phong material 
@@ -17,12 +18,12 @@ public class PhongMaterial extends Material{
     /**
      * color of the material
      */
-    public final Color diffuse;
+    public final Texture diffuse;
     
     /**
      * color of glossy reflection
      */
-    public final Color specular;
+    public final Texture specular;
     
     /**
      * intensity of the glossy reflection
@@ -35,7 +36,7 @@ public class PhongMaterial extends Material{
      * @param specular the color of glossy reflection
      * @param exponent the intensity of the glossy reflection
      */
-    public PhongMaterial(final Color diffuse, final Color specular, final int exponent) {
+    public PhongMaterial(final Texture diffuse, final Texture specular, final int exponent) {
         this.diffuse = diffuse;
         this.specular = specular;
         this.exponent = exponent;
@@ -44,7 +45,12 @@ public class PhongMaterial extends Material{
     @Override
     public Color colorFor(final Hit hit, final World world, Tracer tracer) {
         Normal3 hitNormal = hit.normal;
-        Color totalColor = this.diffuse.mul(world.ambientColor);
+        final double uCoord = hit.texCoord.u;
+        final double vCoord = hit.texCoord.v;
+        
+        final Color difColor = this.diffuse.getColor(uCoord, vCoord);
+        final Color specColor = this.diffuse.getColor(uCoord, vCoord);
+        Color totalColor = difColor.mul(world.ambientColor);
                 
         Point3 pointHit = hit.ray.at(hit.t);
         
@@ -57,8 +63,8 @@ public class PhongMaterial extends Material{
                 double max2 = Math.pow(Math.max(0.0, hit.ray.d.mul(-1).dot(r)), this.exponent);
                 
                 Color lightColor = light.color;
-                totalColor = totalColor.add(diffuse.mul(lightColor).mul(max).
-                                        add(specular.mul(lightColor).mul(max2)));
+                totalColor = totalColor.add(difColor.mul(lightColor).mul(max).
+                                        add(specColor.mul(lightColor).mul(max2)));
             }
         }
         return totalColor;
