@@ -3,6 +3,7 @@ package texture;
 import color.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 /**
@@ -15,6 +16,8 @@ public class ImageTexture implements Texture{
      * image that is used as texture
      */
     public BufferedImage image;
+    
+    private final String rootPath = "src/texture/";
 
     /**
      * Constructor
@@ -25,7 +28,7 @@ public class ImageTexture implements Texture{
         this.image = null;
         
         try {
-            this.image = ImageIO.read(new File(imagePath));
+            this.image = ImageIO.read(new File(rootPath+imagePath));
         } catch (Exception e) {
             System.err.println(e.getMessage());
             
@@ -76,5 +79,32 @@ public class ImageTexture implements Texture{
         final double g = color.getGreen();
         final double b = color.getBlue();
         return new Color(r, g, b);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.image);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ImageTexture other = (ImageTexture) obj;
+        if (!Objects.equals(this.image, other.image)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ImageTexture{" + "image=" + image + '}';
     }
 }
