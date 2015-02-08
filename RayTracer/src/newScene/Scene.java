@@ -17,6 +17,7 @@ import light.DirectionalLight;
 import light.Light;
 import light.PointLight;
 import light.SpotLight;
+import material.LambertMaterial;
 import material.PhongMaterial;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
@@ -82,7 +83,10 @@ public class Scene {
     
     /*Sets Camera to Perspective or Orth.*/
     public void setCam(){
-        cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+        cam = new PerspectiveCamera(new Point3(4, 4, 4), 
+                new Vector3(-1, -1, -1),
+                new Vector3(0, 1, 0),
+                Math.PI/4);
     }
     
     public void spotlight(){
@@ -116,26 +120,30 @@ public class Scene {
     }
     
     public void createSphere(Color color){
-        Sphere sphere = new Sphere(new Point3(0,0,-3),0.5, color);
+        
+        Sphere sphere = new Sphere(new Point3(0,0,-3),0.5, new LambertMaterial(new SingleColorTexture(color)));
         geometryList.add(sphere);
     }
     
     public void createBox(Color color){
-        AxisAlignedBox box = new AxisAlignedBox(new Point3(0,0,-2), new Point3(2,1,-3), color);
+        AxisAlignedBox box = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new LambertMaterial(new SingleColorTexture(color)));
         geometryList.add(box);
     }
     
     public void createTriangle(Color color){
-        Triangle triangle = new Triangle(new Vector3(-0.5,0.5,-3), new Vector3(0.5,0.5,-3), new Vector3(0.5,-0.5,-3), color);
+        Triangle triangle = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), new LambertMaterial(new SingleColorTexture(color)));
         geometryList.add(triangle);
     }
     
     public void createPlane(Color color){
-        Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), color);
+        Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new LambertMaterial(new SingleColorTexture(color)));
         geometryList.add(plane);
     }
     
     public void drawScene(){
+        if(lightList.isEmpty()){
+            world.setAmbientColor(white);
+        }
         RayTracer rayTracer = new RayTracer(world, cam);
                 
     }
