@@ -41,6 +41,8 @@ public class RaytracerGUI {
 
     private JMenu file5 = new JMenu("Transformation");
     
+    private JMenu newScene = new JMenu("New Scene");
+    
     
     public RaytracerGUI(){
         createWindow();
@@ -74,8 +76,25 @@ public class RaytracerGUI {
         
         test5Menu();
         
+        newScene();
+        
         frame.setJMenuBar(menu);
         
+    }
+    
+    private void newScene(){
+        JMenuItem newSphere = new JMenuItem("make new Scene");
+        newSphere.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NewScene newScene1 = new NewScene();
+                centerWindow(newScene1);
+                newScene1.setVisible(true);
+                newScene1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            }
+        });
+        newScene.add(newSphere);
+        menu.add(newScene);
     }
     
     private void test1Menu(){

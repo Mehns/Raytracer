@@ -62,7 +62,7 @@ public class AxisAlignedBox extends Geometry {
     public final Plane top;
 
     /**
-     * constrcts an axis-aligned-box (AAB) with color: 
+     * constructs an axis-aligned-box (AAB) with color: 
      * initializes all 6 sides of AAB as planes with color
      * @param lbf left bottom far corner of AAB
      * @param run right upper near corner
@@ -93,7 +93,7 @@ public class AxisAlignedBox extends Geometry {
     }
 
     /**
-     * constrcts an axis-aligned-box (AAB) with material
+     * constructs an axis-aligned-box (AAB) with material
      *
      * @param lbf left bottom far corner of AAB
      * @param run right upper near corner
