@@ -34,11 +34,17 @@ public class World {
      */
     public final Color backgroundColor;
     
+    /**
+     * refraction of world
+     */
+    public final double indexOfRefraction;
+    
     public World(final ArrayList<Geometry> geometry){
         this.geoList = geometry;
         this.lightList = new ArrayList<>();
         this.ambientColor = new Color(0.5,0.5,0.5);
         this.backgroundColor = new Color(0,0,0);
+        this.indexOfRefraction = 1.0;
     }
 
     /**
@@ -53,6 +59,7 @@ public class World {
         this.geoList = geometry;
         this.ambientColor = ambientColor;
         this.backgroundColor = new Color(0,0,0);
+        this.indexOfRefraction = 1.0;
     }
     
     /**
