@@ -6,6 +6,7 @@
 package newScene;
 
 import camera.Camera;
+import camera.OrthographicCamera;
 import camera.PerspectiveCamera;
 import color.Color;
 import geometry.AxisAlignedBox;
@@ -77,16 +78,21 @@ public class Scene {
         
         geometryList = new ArrayList();
         
-        world = new World(geometryList, lightList, new Color(0,0,0));
+        world = new World(geometryList, lightList, grey);
        
     }
     
     /*Sets Camera to Perspective or Orth.*/
-    public void setCam(){
-        cam = new PerspectiveCamera(new Point3(4, 4, 4), 
+    public void setCam(String camera){
+        if(camera.equals("perspective Camera")){
+            cam = new PerspectiveCamera(new Point3(4, 4, 4), 
                 new Vector3(-1, -1, -1),
                 new Vector3(0, 1, 0),
                 Math.PI/4);
+        }else{
+            cam = new OrthographicCamera(new Point3(4, 4, 4), new Vector3(-1, -1, -1), new Vector3(0,1,0),3);
+        }
+        
     }
     
     public void spotlight(){

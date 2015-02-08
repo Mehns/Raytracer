@@ -41,6 +41,7 @@ public class NewScene extends javax.swing.JFrame {
         planeColor = new javax.swing.JComboBox();
         boxColor = new javax.swing.JComboBox();
         triangleColor = new javax.swing.JComboBox();
+        cameraChooser = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,6 +75,8 @@ public class NewScene extends javax.swing.JFrame {
 
         triangleColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "yellow", "red", "blue", "green" }));
 
+        cameraChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "perspective Camera", "orthographic Camera" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,14 +89,7 @@ public class NewScene extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pointlightCheckbox)
-                        .addGap(18, 18, 18)
-                        .addComponent(spotlightCheckbox)
-                        .addGap(18, 18, 18)
-                        .addComponent(directionalLightCheckbox)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(planeCheckbox)
                             .addComponent(planeColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -109,7 +105,17 @@ public class NewScene extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(triangleCheckbox)
                             .addComponent(triangleColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cameraChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pointlightCheckbox)
+                                .addGap(18, 18, 18)
+                                .addComponent(spotlightCheckbox)
+                                .addGap(18, 18, 18)
+                                .addComponent(directionalLightCheckbox)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +137,9 @@ public class NewScene extends javax.swing.JFrame {
                     .addComponent(directionalLightCheckbox)
                     .addComponent(spotlightCheckbox)
                     .addComponent(pointlightCheckbox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(cameraChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(15, 15, 15))
         );
@@ -165,7 +173,7 @@ public class NewScene extends javax.swing.JFrame {
         if(directionalLightCheckbox.isSelected()){
             scene.directionalLight();
         }
-        scene.setCam();
+        scene.setCam((String) cameraChooser.getSelectedItem());
         scene.drawScene();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -207,6 +215,7 @@ public class NewScene extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxCheckbox;
     private javax.swing.JComboBox boxColor;
+    private javax.swing.JComboBox cameraChooser;
     private javax.swing.JCheckBox directionalLightCheckbox;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox planeCheckbox;
