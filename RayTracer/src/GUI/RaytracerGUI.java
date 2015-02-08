@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -64,6 +65,8 @@ public class RaytracerGUI {
     
     private void menuBar(){
         
+        newScene();
+        
         test1Menu();
         
         test2Menu();
@@ -76,6 +79,20 @@ public class RaytracerGUI {
         
         frame.setJMenuBar(menu);
         
+    }
+    
+    private void newScene(){
+        JButton newSceneButton = new JButton("New Scene");
+        newSceneButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NewScene newScene1 = new NewScene();
+                centerWindow(newScene1);
+                newScene1.setVisible(true);
+                newScene1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            }
+        });
+        menu.add(newSceneButton);
     }
     
     private void test1Menu(){

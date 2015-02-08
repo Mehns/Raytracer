@@ -27,7 +27,15 @@ public class World {
     /**
      * Color of ambient light
      */
-    public final Color ambientColor;
+    private Color ambientColor;
+
+    public Color getAmbientColor() {
+        return ambientColor;
+    }
+
+    public void setAmbientColor(Color ambientColor) {
+        this.ambientColor = ambientColor;
+    }
     
     /**
      * background color if no hit with ray

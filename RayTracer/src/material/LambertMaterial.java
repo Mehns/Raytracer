@@ -37,7 +37,7 @@ public class LambertMaterial extends Material{
         final double vCoord = hit.texCoord.v;
         
         final Color difColor = this.diffuse.getColor(uCoord, vCoord);
-        Color totalColor = difColor.mul(world.ambientColor);
+        Color totalColor = difColor.mul(world.getAmbientColor());
                 
         Point3 pointHit = hit.ray.at(hit.t);
         
