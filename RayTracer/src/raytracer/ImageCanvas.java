@@ -80,10 +80,10 @@ public class ImageCanvas extends Canvas {
                 Color color;
                 
                 
-                if (hit == null || hit.geo == null) {
+                if (hit == null || hit.geometry == null) {
                     color = backColor;
                 } else {
-                    color = hit.geo.material.colorFor(hit, world, new Tracer(world, 6));
+                    color = hit.geometry.material.colorFor(hit, world, new Tracer(world, 6));
                 }
 
                 java.awt.Color convertColor = new java.awt.Color((float)color.r, 

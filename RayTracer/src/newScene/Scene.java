@@ -23,6 +23,7 @@ import material.LambertMaterial;
 import material.Material;
 import material.PhongMaterial;
 import material.ReflectiveMaterial;
+import material.TransparentMaterial;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
@@ -148,24 +149,24 @@ public class Scene {
         return null;
     }
     
-    public void createSphere(Color color, int materialID){
-        Sphere sphere = new Sphere(new Point3(-1,1,0), 0.5, getMaterial(color, materialID));
+    public void createPlane(Color color, int materialID, float p1, float p2, float p3, float n1, float n2, float n3){
+        Plane plane = new Plane(new Point3(p1, p2, p3), new Normal3(n1,n2,n3), getMaterial(color, materialID));
+        geometryList.add(plane);
+    }
+    
+    public void createSphere(Color color, int materialID, float p1, float p2, float p3, float radius){
+        Sphere sphere = new Sphere(new Point3(p1, p2, p3), radius, getMaterial(color, materialID));
         geometryList.add(sphere);
     }
     
-    public void createBox(Color color, int materialID){
-        AxisAlignedBox box = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), getMaterial(color, materialID));
+    public void createBox(Color color, int materialID, float lbf1, float lbf2, float lbf3, float run1, float run2, float run3){
+        AxisAlignedBox box = new AxisAlignedBox(new Point3(lbf1, lbf2, lbf3), new Point3(run1, run2, run3), getMaterial(color, materialID));
         geometryList.add(box);
     }
     
-    public void createTriangle(Color color, int materialID){
-        Triangle triangle = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), getMaterial(color, materialID));
+    public void createTriangle(Color color, int materialID, float va1, float va2, float va3, float vb1, float vb2, float vb3, float vc1, float vc2, float vc3){
+        Triangle triangle = new Triangle(new Vector3(va1, va2, va3), new Vector3(vb1, vb2, vb3), new Vector3(vc1, vc2, vc3), getMaterial(color, materialID));
         geometryList.add(triangle);
-    }
-    
-    public void createPlane(Color color, int materialID){
-        Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), getMaterial(color, materialID));
-        geometryList.add(plane);
     }
     
     public void drawScene(){

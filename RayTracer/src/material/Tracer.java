@@ -35,6 +35,6 @@ public class Tracer {
         if (hit == null) {
             return world.backgroundColor;
         }
-        return hit.geo.material.colorFor(hit, world, new Tracer(world, recursions - 1));
+        return hit.geometry.material.colorFor(hit, world, new Tracer(world, recursions - 1));
     }
 }

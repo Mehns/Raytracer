@@ -9,7 +9,7 @@ import raytracer.Ray;
 import world.World;
 
 /**
- * represents a pointlight
+ * represents a PointLight
  * @author Lena
  */
 public class PointLight extends Light{
@@ -20,7 +20,7 @@ public class PointLight extends Light{
     public final Point3 position;
 
     /**
-     * constructs new pointLight
+     * constructs new PointLight
      * @param position of light
      * @param color of light
      * @param castsShadows boolean for shadow
@@ -73,10 +73,7 @@ public class PointLight extends Light{
             return false;
         }
         final PointLight other = (PointLight) obj;
-        if (!Objects.equals(this.position, other.position)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.position, other.position);
     }
 
     @Override

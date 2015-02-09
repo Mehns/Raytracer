@@ -5,6 +5,7 @@
  */
 package raytracer;
 
+import GUI.RaytracerGUI;
 import camera.Camera;
 import java.util.Objects;
 import javax.swing.JFrame;
@@ -28,14 +29,14 @@ public class RayTracer extends JFrame{
     public static final int WINDOW_HEIGHT = 480;
     
     /**
-     * imageCanvas of raytracer
+     * imageCanvas of RayTracer
      */
     private final ImageCanvas imageCanvas;
     
     /**
-     * constructs a raytracer
-     * @param world of raytracer
-     * @param cam of raytracer
+     * constructs a RayTracer
+     * @param world of RayTracer
+     * @param cam of RayTracer
      */
     public RayTracer(final World world, final Camera cam){
         super("Ray Tracer");
@@ -63,12 +64,7 @@ public class RayTracer extends JFrame{
 //    }
 
     public static void main(String[] args){
-//        Test1_Geometries test1 = new Test1_Geometries();
-//        Test2_Light test2 = new Test2_Light();
-//        Test3_Shadows test3 = new Test3_Shadows();
-//        Test4_ReflectiveMaterial test4 = new Test4_ReflectiveMaterial();
-//        Test5_Transformation test5 = new Test5_Transformation();
-        Test6_TransparentMaterial test6 = new Test6_TransparentMaterial();
+        new RaytracerGUI();
     }
     
     @Override
