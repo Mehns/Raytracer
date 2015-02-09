@@ -1,6 +1,7 @@
 package geometry;
 
 import color.Color;
+import java.util.Objects;
 import material.Material;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
@@ -130,5 +131,37 @@ public class Sphere extends Geometry{
         double v = 1 - theta/Math.PI;
         
         return new TexCoord2(u, v);
-    }    
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.c);
+        hash = 83 * hash + (int) (Double.doubleToLongBits(this.r) ^ (Double.doubleToLongBits(this.r) >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Sphere other = (Sphere) obj;
+        if (!Objects.equals(this.c, other.c)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.r) != Double.doubleToLongBits(other.r)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Sphere{" + "c=" + c + ", r=" + r + '}';
+    }
+    
 }

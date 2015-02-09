@@ -1,6 +1,7 @@
 
 package sampling;
 
+import java.util.Arrays;
 import mathlibrary.Point2;
 
 /**
@@ -33,6 +34,33 @@ public class SamplingPattern {
             x2 = x/(-2);
             y2++;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Arrays.deepHashCode(this.points);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SamplingPattern other = (SamplingPattern) obj;
+        if (!Arrays.deepEquals(this.points, other.points)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "SamplingPattern{" + "points=" + points + '}';
     }
     
 }

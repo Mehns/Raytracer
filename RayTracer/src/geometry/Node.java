@@ -6,11 +6,12 @@
 package geometry;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import mathlibrary.Transform;
 import raytracer.Ray;
 
 /**
- *
+ * represents a node
  * @author Lena
  */
 public class Node extends Geometry{
@@ -50,6 +51,37 @@ public class Node extends Geometry{
             return null;
         }
         return new Hit(minimalHit.t, ray, minimalHit.geometry, transform.mul(minimalHit.normal), minimalHit.texCoord);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.transform);
+        hash = 61 * hash + Objects.hashCode(this.geoList);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Node other = (Node) obj;
+        if (!Objects.equals(this.transform, other.transform)) {
+            return false;
+        }
+        if (!Objects.equals(this.geoList, other.geoList)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Node{" + "transform=" + transform + ", geoList=" + geoList + '}';
     }
     
 }

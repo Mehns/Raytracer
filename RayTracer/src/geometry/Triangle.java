@@ -10,7 +10,7 @@ import raytracer.Ray;
 import texture.TexCoord2;
 
 /**
- *
+ * represents a triangle
  * @author Lena
  */
 public class Triangle extends Geometry{
