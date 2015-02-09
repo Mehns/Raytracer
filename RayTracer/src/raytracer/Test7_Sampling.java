@@ -31,7 +31,7 @@ public class Test7_Sampling {
         PhongMaterial matPhongRed = new PhongMaterial(new SingleColorTexture(red),
                                     new SingleColorTexture(red), 64);
         final Plane plane = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new SingleColorTexture(new Color(0.8,0.8,0.8))));
-        final Sphere sphere1 = new Sphere(new Point3(1,1,1), 0.5, matPhongRed);
+        final Sphere sphere1 = new Sphere(new Point3(2,2,2), 0.5, matPhongRed);
         
         ArrayList geolist = new ArrayList();
         geolist.add(plane);

@@ -64,8 +64,8 @@ public class RayTracer extends JFrame{
 //    }
 
     public static void main(String[] args){
-        //Test7_Sampling test7 = new Test7_Sampling();
-        new RaytracerGUI();
+        Test7_Sampling test7 = new Test7_Sampling();
+        //new RaytracerGUI();
     }
     
     @Override
