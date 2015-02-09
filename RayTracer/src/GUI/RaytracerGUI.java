@@ -20,6 +20,7 @@ import raytracer.Test2_Light;
 import raytracer.Test3_Shadows;
 import raytracer.Test4_ReflectiveMaterial;
 import raytracer.Test5_Transformation;
+import raytracer.Test6_TransparentMaterial;
 
 
 /**
@@ -41,6 +42,8 @@ public class RaytracerGUI {
     private JMenu file4 = new JMenu("Reflection");
 
     private JMenu file5 = new JMenu("Transformation");
+    
+    private JMenu file6 = new JMenu("Transparent");
     
     
     public RaytracerGUI(){
@@ -76,6 +79,8 @@ public class RaytracerGUI {
         test4Menu();
         
         test5Menu();
+        
+        test6Menu();
         
         frame.setJMenuBar(menu);
         
@@ -325,6 +330,20 @@ public class RaytracerGUI {
         file5.add(box);
         
         menu.add(file5);
+    }
+    
+    private void test6Menu(){
+        
+        JMenuItem start6 = new JMenuItem("Start all");
+        start6.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Test6_TransparentMaterial test = new Test6_TransparentMaterial();
+            }
+        });
+        file6.add(start6);
+        menu.add(file6);
+        
     }
     
     /**

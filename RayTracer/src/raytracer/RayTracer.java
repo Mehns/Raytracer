@@ -5,6 +5,7 @@
  */
 package raytracer;
 
+import GUI.RaytracerGUI;
 import camera.Camera;
 import java.util.Objects;
 import javax.swing.JFrame;
@@ -63,12 +64,7 @@ public class RayTracer extends JFrame{
 //    }
 
     public static void main(String[] args){
-//        Test1_Geometries test1 = new Test1_Geometries();
-//        Test2_Light test2 = new Test2_Light();
-//        Test3_Shadows test3 = new Test3_Shadows();
-//        Test4_ReflectiveMaterial test4 = new Test4_ReflectiveMaterial();
-//        Test5_Transformation test5 = new Test5_Transformation();
-        Test6_TransparentMaterial test6 = new Test6_TransparentMaterial();
+        new RaytracerGUI();
     }
     
     @Override
