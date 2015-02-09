@@ -93,7 +93,7 @@ public class Scene {
                 new SamplingPattern(1,1),
                 Math.PI/4);
         }else{
-            cam = new OrthographicCamera(new Point3(4, 4, 4), new Vector3(-1, -1, -1), new Vector3(0,1,0), new SamplingPattern(1,1),3);
+            cam = new OrthographicCamera(new Point3(4, 4, 4), new Vector3(-1, -1, -1), new Vector3(0,1,0), new SamplingPattern(1,1), 3);
         }
         
     }
