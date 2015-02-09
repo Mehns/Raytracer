@@ -26,6 +26,24 @@ public class TexCoord2 {
         this.u = u;
         this.v = v;
     }
+    
+    /**
+     * Adding two TextureCoordinates
+     * @param t another TextureCoordinate to be add with
+     * @return
+     */
+    public TexCoord2 add(final TexCoord2 t){
+        return new TexCoord2(u + t.u, v + t.v);
+    }
+    
+    /**
+     * Multiplys a TextuerCoordinate value
+     * @param n multiplied value
+     * @return
+     */
+    public TexCoord2 mul(final double n){
+        return new TexCoord2(u * n, v * n);
+    }
 
     @Override
     public int hashCode() {

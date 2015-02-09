@@ -16,6 +16,8 @@ public class ImageTexture implements Texture{
      * image that is used as texture
      */
     public BufferedImage image;
+    private int width;
+    private int height;
     
     private final String rootPath = "src/texture/";
 
@@ -26,9 +28,13 @@ public class ImageTexture implements Texture{
      */
     public ImageTexture(String imagePath) {
         this.image = null;
+        width = 0;
+        height = 0;
         
         try {
             this.image = ImageIO.read(new File(rootPath+imagePath));
+            width = image.getWidth();
+            height = image.getHeight();            
         } catch (Exception e) {
             System.err.println(e.getMessage());
             
@@ -41,12 +47,14 @@ public class ImageTexture implements Texture{
     public Color getColor(double u, double v) {
         final double uCoordinate = getRelativeCoordinate(u);
         final double vCoordinate = getRelativeCoordinate(v);
-        final double x = (this.image.getWidth() - 1) * uCoordinate;
-        final double y = (this.image.getHeight() - 1) - 
-                ((this.image.getHeight() - 1) * vCoordinate); //left bottom origin
+        final double x = (width - 1) * uCoordinate;
+        final double y = (height - 1) - ((height - 1) * vCoordinate); //left bottom origin
         
-        final int xInt = (int) Math.round(x);
-        final int yInt = (int) Math.round(y);
+//        final int xInt = (int) Math.round(x);
+//        final int yInt = (int) Math.round(y);
+        
+        final int xInt = (int) x;
+        final int yInt = (int) y;
         
         return getPositionColor(this.image, xInt, yInt);
     }
@@ -60,9 +68,8 @@ public class ImageTexture implements Texture{
         double coordinateOut = coordinateIn % 1.0;
                 
         if (coordinateOut < 0.0) {
-            coordinateOut += 1.0;            
-        }
-        
+            coordinateOut = coordinateOut + 1.0;            
+        }        
         return coordinateOut;                
     }
     
@@ -75,9 +82,9 @@ public class ImageTexture implements Texture{
      */
     public static Color getPositionColor(final BufferedImage image, final int x, final int y){
         final java.awt.Color color = new java.awt.Color(image.getRGB(x, y));
-        final double r = color.getRed();
-        final double g = color.getGreen();
-        final double b = color.getBlue();
+        final double r = color.getRed() / 255.0;
+        final double g = color.getGreen() / 255.0;
+        final double b = color.getBlue() / 255.0;
         return new Color(r, g, b);
     }
 
