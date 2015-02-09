@@ -72,6 +72,34 @@ public class Sphere extends Geometry{
         
         final double d = (b*b)-(4*a*c);
         
+        
+        
+//        double epsilon = 0.0001;
+//        
+//        if (d > 0.0 ) {
+//            double t1 = (-b + Math.sqrt(d)) / (2 * a);
+//            double t2 = (-b - Math.sqrt(d)) / (2 * a);
+//            double t = epsilon;
+//            if (t1 < epsilon && t2 < epsilon) {
+//            t = Math.max(t1, t2);
+//            }
+//            if (t1 > epsilon && t2 >= epsilon) {
+//            t = Math.min(t1, t2);
+//            }
+//            if (t2 > epsilon && t1 < epsilon) {
+//            t = t2;
+//            }
+//            if (t2 < epsilon && t1 > epsilon) {
+//            t = t1;
+//            }
+//            if (t > epsilon) {
+//            Normal3 n = r.at(t).sub(this.c).normalized().asNormal();
+//            return new Hit(t, r, this, n, getTextureCoordinate(r.at(t)));
+//            }
+//        }
+        
+        
+        
         if(d>=0.0){
             final double x1 = (-b+Math.sqrt(d))/(2*a);
             final double x2 = (-b-Math.sqrt(d))/(2*a);
@@ -85,16 +113,22 @@ public class Sphere extends Geometry{
             Normal3 normal = r.at(t).sub(this.c).normalized().asNormal();
             TexCoord2 texCoord = getTextureCoordinate(r.at(t));
             return new Hit(t,r,this,normal,texCoord);
-        }        
+        }      
+        
+        
+        
+        
         return null;
     }
     
-    private TexCoord2 getTextureCoordinate(Point3 point){
-        Vector3 d = new Vector3(point.x, point.y, point.z);
-        double theta = Math.acos(d.y);
-        double phi = Math.atan2(d.x, d.z);
-        return new TexCoord2(phi / (Math.PI*2), -(theta/Math.PI));
-    }
-    
-    
+    private TexCoord2 getTextureCoordinate(final Point3 point){
+
+        double theta = Math.acos(point.y);
+        double phi = Math.atan2(point.x, point.z);
+        
+        double u = phi / (Math.PI*2);
+        double v = 1 - theta/Math.PI;
+        
+        return new TexCoord2(u, v);
+    }    
 }
