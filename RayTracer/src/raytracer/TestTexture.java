@@ -27,8 +27,12 @@ import world.World;
  */
 public class TestTexture {
     
+    public TestTexture(){
+        test1();
+    }
+    
     //Test1
-    public static void test1(){
+    public void test1(){
         
         // color-texture
         SingleColorTexture redTexture = new SingleColorTexture(new Color(1,0,0));
@@ -71,9 +75,6 @@ public class TestTexture {
         RayTracer rayTracer1 = new RayTracer(world1, cam1);
     }
     
-    public static void main(String[] args) {
-        test1();
-    }
     
     
 }

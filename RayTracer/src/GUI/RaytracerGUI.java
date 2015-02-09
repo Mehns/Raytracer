@@ -21,6 +21,8 @@ import raytracer.Test3_Shadows;
 import raytracer.Test4_ReflectiveMaterial;
 import raytracer.Test5_Transformation;
 import raytracer.Test6_TransparentMaterial;
+import raytracer.Test7_Sampling;
+import raytracer.TestTexture;
 
 
 /**
@@ -45,6 +47,10 @@ public class RaytracerGUI {
     
     private JMenu file6 = new JMenu("Transparent");
     
+    private JMenu file7 = new JMenu("Sampling");
+    
+    private JMenu file8 = new JMenu("Texture");
+    
     
     public RaytracerGUI(){
         createWindow();
@@ -55,13 +61,13 @@ public class RaytracerGUI {
         menuBar();
         centerWindow(frame);
         frame.setVisible(true);
-        frame.setSize(700, 400);
+        frame.setSize(800, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public static void centerWindow(Window frame) {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) (((dimension.getWidth() - frame.getWidth()) / 2) - 350);
+        int x = (int) (((dimension.getWidth() - frame.getWidth()) / 2) - 400);
         int y = (int) (((dimension.getHeight() - frame.getHeight()) / 2) - 200);
         frame.setLocation(x, y);
     }
@@ -81,6 +87,10 @@ public class RaytracerGUI {
         test5Menu();
         
         test6Menu();
+        
+        test7Menu();
+        
+        test8Menu();
         
         frame.setJMenuBar(menu);
         
@@ -343,6 +353,34 @@ public class RaytracerGUI {
         });
         file6.add(start6);
         menu.add(file6);
+        
+    }
+    
+    private void test7Menu(){
+        
+        JMenuItem start7 = new JMenuItem("Start all");
+        start7.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Test7_Sampling test = new Test7_Sampling();
+            }
+        });
+        file7.add(start7);
+        menu.add(file7);
+        
+    }
+    
+    private void test8Menu(){
+        
+        JMenuItem start8 = new JMenuItem("Start all");
+        start8.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TestTexture test = new TestTexture();
+            }
+        });
+        file8.add(start8);
+        menu.add(file8);
         
     }
     
