@@ -43,7 +43,7 @@ public class RayTracer extends JFrame{
         
         this.setSize(640, 480);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-
+        
         this.imageCanvas = new ImageCanvas(world, cam); 
         add(this.imageCanvas);
         setVisible(true); 
