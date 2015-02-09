@@ -49,7 +49,7 @@ public class PhongMaterial extends Material{
         final double vCoord = hit.texCoord.v;
         
         final Color difColor = this.diffuse.getColor(uCoord, vCoord);
-        final Color specColor = this.diffuse.getColor(uCoord, vCoord);
+        final Color specColor = this.specular.getColor(uCoord, vCoord);
         Color totalColor = difColor.mul(world.getAmbientColor());
                 
         Point3 pointHit = hit.ray.at(hit.t);
