@@ -20,7 +20,7 @@ public class Plane extends Geometry{
     public final Point3 a;
     
     /**
-     * given Normal for Plane
+     * given Normal of Plane
      */
     public final Normal3 n;
     
