@@ -28,6 +28,7 @@ import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
 import raytracer.RayTracer;
+import sampling.SamplingPattern;
 import texture.SingleColorTexture;
 import world.World;
 
@@ -89,9 +90,10 @@ public class Scene {
             cam = new PerspectiveCamera(new Point3(4, 4, 4), 
                 new Vector3(-1, -1, -1),
                 new Vector3(0, 1, 0),
+                new SamplingPattern(1,1),
                 Math.PI/4);
         }else{
-            cam = new OrthographicCamera(new Point3(4, 4, 4), new Vector3(-1, -1, -1), new Vector3(0,1,0),3);
+            cam = new OrthographicCamera(new Point3(4, 4, 4), new Vector3(-1, -1, -1), new Vector3(0,1,0), new SamplingPattern(1,1),3);
         }
         
     }

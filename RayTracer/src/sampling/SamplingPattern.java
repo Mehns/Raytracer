@@ -22,15 +22,15 @@ public class SamplingPattern {
     public SamplingPattern(int x, int y) {
  
         points = new Point2[x][y];
-        int x2 = x/(-2);
-        int y2 = y/(-2);
+        double x2 = 1.0/(x-1.0);
+        double y2 = 1.0/(x-1.0);
         
         for (int i = 0; i < x; i++){
             for (int j = 0; j < y; j++){
                 points[i][j] = new Point2(x2,y2);
                 x2++;
             }
-            x2 = x/(-2);
+            x2 = 1.0/(x-1.0);
             y2++;
         }
     }
