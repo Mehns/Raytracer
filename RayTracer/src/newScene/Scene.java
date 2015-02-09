@@ -18,8 +18,11 @@ import light.DirectionalLight;
 import light.Light;
 import light.PointLight;
 import light.SpotLight;
+import material.BlinnPhongMaterial;
 import material.LambertMaterial;
+import material.Material;
 import material.PhongMaterial;
+import material.ReflectiveMaterial;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
@@ -46,14 +49,13 @@ public class Scene {
     final Color green;
     final Color blue;
     final Color yellow;
+    final Color darkgrey;
     
     final PointLight pointLight;
     final DirectionalLight directionalLight;
     final SpotLight spotLight;
     
     final ArrayList<Light> lightList;
-    
-    final PhongMaterial matPhongYellow;
     
     public Scene(){
         
@@ -64,6 +66,7 @@ public class Scene {
         this.green = new Color(0,1,0);
         this.blue = new Color(0,0,1);
         this.yellow = new Color(1,1,0);
+        this.darkgrey = new Color(0.1,0.1,0.1);
         
         this.pointLight = new PointLight(new Point3(4, 4, 4), white, false);
         
@@ -73,12 +76,9 @@ public class Scene {
         
         this.lightList = new ArrayList<>();
         
-        this.matPhongYellow = new PhongMaterial(new SingleColorTexture(yellow),
-                                    new SingleColorTexture(white), 64);
-        
         geometryList = new ArrayList();
         
-        world = new World(geometryList, lightList, grey);
+        world = new World(geometryList, lightList, black);
        
     }
     
@@ -121,28 +121,50 @@ public class Scene {
         if(color.equals("green")){
             return green;
         }
+        if(color.equals("darkgrey")){
+            return darkgrey;
+        }
         
         return null;
     }
     
-    public void createSphere(Color color){
+    private Material getMaterial(Color color, int materialID){
+        if(materialID == 0){
+            return new LambertMaterial(new SingleColorTexture(color));
+        }
         
-        Sphere sphere = new Sphere(new Point3(0,0,-3),0.5, new LambertMaterial(new SingleColorTexture(color)));
+        if(materialID == 1){
+            return new PhongMaterial(new SingleColorTexture(color), new SingleColorTexture(white), 100);
+        }
+        
+        if(materialID == 2){
+            return new BlinnPhongMaterial(new SingleColorTexture(color), new SingleColorTexture(white), 64);
+        }
+        
+        if(materialID == 3){
+            return new ReflectiveMaterial(new SingleColorTexture(color), new SingleColorTexture(black),64,new SingleColorTexture(grey));
+        }
+        
+        return null;
+    }
+    
+    public void createSphere(Color color, int materialID){
+        Sphere sphere = new Sphere(new Point3(-1,1,0), 0.5, getMaterial(color, materialID));
         geometryList.add(sphere);
     }
     
-    public void createBox(Color color){
-        AxisAlignedBox box = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new LambertMaterial(new SingleColorTexture(color)));
+    public void createBox(Color color, int materialID){
+        AxisAlignedBox box = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), getMaterial(color, materialID));
         geometryList.add(box);
     }
     
-    public void createTriangle(Color color){
-        Triangle triangle = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), new LambertMaterial(new SingleColorTexture(color)));
+    public void createTriangle(Color color, int materialID){
+        Triangle triangle = new Triangle(new Vector3(0, 0, -1), new Vector3(1, 0, -1), new Vector3(1, 1, -1), getMaterial(color, materialID));
         geometryList.add(triangle);
     }
     
-    public void createPlane(Color color){
-        Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new LambertMaterial(new SingleColorTexture(color)));
+    public void createPlane(Color color, int materialID){
+        Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), getMaterial(color, materialID));
         geometryList.add(plane);
     }
     
