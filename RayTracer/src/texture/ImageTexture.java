@@ -21,7 +21,7 @@ public class ImageTexture implements Texture{
 
     /**
      * Constructor
-     * constructs an imagetexture from a given image
+     * constructs an ImageTexture from a given image
      * @param imagePath path to image
      */
     public ImageTexture(String imagePath) {

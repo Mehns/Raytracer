@@ -24,7 +24,7 @@ public class Hit {
     /**
      * Geometry that hits ray
      */
-    public final Geometry geo;
+    public final Geometry geometry;
     
     /**
      * Normal of the hit on geometry
@@ -38,17 +38,17 @@ public class Hit {
 
     /**
      * Constructor of class Hit
-     * initializes t, ray, geo
+     * initializes t, ray, geometry
      * @param t where ray and geometry hit
      * @param ray Ray that hits geometry
-     * @param geo Geometry that hits ray
+     * @param geometry Geometry that hits ray
      * @param normal Normal of the hit on the geometry
      * @param texCoord texture coordinate of hit
      */
-    public Hit(final double t, final Ray ray, final Geometry geo, final Normal3 normal, final TexCoord2 texCoord) {
+    public Hit(final double t, final Ray ray, final Geometry geometry, final Normal3 normal, final TexCoord2 texCoord) {
         this.t = t;
         this.ray = ray;
-        this.geo = geo;
+        this.geometry = geometry;
         this.normal = normal;
         this.texCoord = texCoord;
     }
@@ -57,7 +57,7 @@ public class Hit {
 
     @Override
     public String toString() {
-        return "Hit{" + "t=" + t + ", ray=" + ray + ", geo=" + geo 
+        return "Hit{" + "t=" + t + ", ray=" + ray + ", geo=" + geometry 
                 + ", normal=" + normal +  ", textureCoord=" + texCoord + '}';
     }
 
@@ -66,7 +66,7 @@ public class Hit {
         int hash = 7;
         hash = 17 * hash + (int) (Double.doubleToLongBits(this.t) ^ (Double.doubleToLongBits(this.t) >>> 32));
         hash = 17 * hash + Objects.hashCode(this.ray);
-        hash = 17 * hash + Objects.hashCode(this.geo);
+        hash = 17 * hash + Objects.hashCode(this.geometry);
         hash = 17 * hash + Objects.hashCode(this.normal);
         hash = 17 * hash + Objects.hashCode(this.texCoord);
         return hash;
@@ -87,7 +87,7 @@ public class Hit {
         if (!Objects.equals(this.ray, other.ray)) {
             return false;
         }
-        if (!Objects.equals(this.geo, other.geo)) {
+        if (!Objects.equals(this.geometry, other.geometry)) {
             return false;
         }
         if (!Objects.equals(this.normal, other.normal)) {

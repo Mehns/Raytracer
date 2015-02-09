@@ -29,14 +29,14 @@ public class RayTracer extends JFrame{
     public static final int WINDOW_HEIGHT = 480;
     
     /**
-     * imageCanvas of raytracer
+     * imageCanvas of RayTracer
      */
     private final ImageCanvas imageCanvas;
     
     /**
-     * constructs a raytracer
-     * @param world of raytracer
-     * @param cam of raytracer
+     * constructs a RayTracer
+     * @param world of RayTracer
+     * @param cam of RayTracer
      */
     public RayTracer(final World world, final Camera cam){
         super("Ray Tracer");

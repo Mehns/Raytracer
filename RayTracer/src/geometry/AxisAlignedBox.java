@@ -164,15 +164,15 @@ public class AxisAlignedBox extends Geometry {
         for (Hit h : hits) {
             if (h != null) {
                 Point3 p = r.at(h.t);
-                if (h.geo == leftFront || h.geo == rightBack) {
+                if (h.geometry == leftFront || h.geometry == rightBack) {
                     if ((lbf.x <= p.x && p.x <= run.x) && (lbf.y <= p.y && p.y <= run.y)) {
                         realHits.add(h);
                     }
-                } else if (h.geo == leftBack || h.geo == rightFront) {
+                } else if (h.geometry == leftBack || h.geometry == rightFront) {
                     if ((lbf.y <= p.y && p.y <= run.y) && (lbf.z <= p.z && p.z <= run.z)) {
                         realHits.add(h);
                     }
-                } else if (h.geo == top || h.geo == bottom) {
+                } else if (h.geometry == top || h.geometry == bottom) {
                     if ((lbf.x <= p.x && p.x <= run.x) && (lbf.z <= p.z && p.z <= run.z)) {
                         realHits.add(h);
                     }

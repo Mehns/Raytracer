@@ -6,7 +6,6 @@
 package geometry;
 
 import java.util.ArrayList;
-import material.Material;
 import mathlibrary.Transform;
 import raytracer.Ray;
 
@@ -26,8 +25,8 @@ public class Node extends Geometry{
     public final ArrayList<Geometry> geoList;
 
     /**
-     * creates a new node object having a Transform object, a list og geometries
-     * and a material as param
+     * creates a new node object having a Transform object, a list of geometries
+     * and a material as parameter
      *
      * @param transform transformation object
      * @param geoList ArrayList of geometries
@@ -50,7 +49,7 @@ public class Node extends Geometry{
         if (minimalHit == null) {
             return null;
         }
-        return new Hit(minimalHit.t, ray, minimalHit.geo, transform.mul(minimalHit.normal), minimalHit.texCoord);
+        return new Hit(minimalHit.t, ray, minimalHit.geometry, transform.mul(minimalHit.normal), minimalHit.texCoord);
     }
     
 }

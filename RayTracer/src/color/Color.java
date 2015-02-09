@@ -24,9 +24,9 @@ public class Color {
     /**
      * initialize r, g, b
      * checks if values are in between the range
-     * @param r red value of the color. Musst be between 0 and 1
-     * @param g green value of the color. Musst be between 0 and 1
-     * @param b blue value of the color. Musst be between 0 and 1
+     * @param r red value of the color. Must be between 0 and 1
+     * @param g green value of the color. Must be between 0 and 1
+     * @param b blue value of the color. Must be between 0 and 1
      */
     public Color(double r, double g, double b) {        
         
@@ -86,7 +86,7 @@ public class Color {
     }
     
     /**
-     * multiplys two colors
+     * multiplies two colors
      * @param c Color
      * @return a new color
      */
@@ -97,7 +97,7 @@ public class Color {
     }
     
     /**
-     * multiplys a double value to a color
+     * multiplies a double value to a color
      * @param v double value
      * @return a new color
      */

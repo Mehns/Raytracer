@@ -22,8 +22,8 @@ public class Ray {
      */
     public final Vector3 d;
     /**
-     * Construcotr
-     * Contructs a ray
+     * Constructor
+     * Constructs a ray
      * @param o Origin of the ray
      * @param d Direction of the ray
      */
