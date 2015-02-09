@@ -17,6 +17,7 @@ import material.LambertMaterial;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import sampling.SamplingPattern;
 import texture.SingleColorTexture;
 import world.World;
 
@@ -43,7 +44,8 @@ public class Test3_Shadows {
     
         final PerspectiveCamera camera = new PerspectiveCamera(new Point3(8, 8, 8), 
                                                       new Vector3(-1, -1, -1), 
-                                                      new Vector3(0, 1, 0), 
+                                                      new Vector3(0, 1, 0),
+                                                      new SamplingPattern(1,1), 
                                                       Math.PI/4);
         
         final World world = new World(geoList1, lightList1, new Color(0,0,0));

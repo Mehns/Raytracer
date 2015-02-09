@@ -16,6 +16,7 @@ import material.BlinnPhongMaterial;
 import mathlibrary.Point3;
 import mathlibrary.Transform;
 import mathlibrary.Vector3;
+import sampling.SamplingPattern;
 import texture.SingleColorTexture;
 import world.World;
 
@@ -44,11 +45,13 @@ public class Test5_Transformation {
         this.camera2 = new PerspectiveCamera(new Point3(4, 4, 4), 
                 new Vector3(-1, -1, -1),
                 new Vector3(0, 1, 0),
+                new SamplingPattern(1,1), 
                 Math.PI/4);
         
         this.camera1 = new PerspectiveCamera(new Point3(8, 8, 8), 
                 new Vector3(-1, -1, -1),
                 new Vector3(0, 1, 0),
+                new SamplingPattern(1,1), 
                 Math.PI/4);
      }
     

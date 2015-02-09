@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import sampling.SamplingPattern;
 
 /**
  * Testclass for raytracer:
@@ -42,7 +43,7 @@ public class Test1_Geometries {
         ArrayList list1 = new ArrayList();
         list1.add(plane);
         World world1 = new World(list1);
-        PerspectiveCamera cam1 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+        PerspectiveCamera cam1 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), new SamplingPattern(1,1), Math.PI/4);
         
         RayTracer rayTracer1 = new RayTracer(world1, cam1);
     }
@@ -53,7 +54,7 @@ public class Test1_Geometries {
         ArrayList list2 = new ArrayList();
         list2.add(sphere);
         World world2 = new World(list2);
-        PerspectiveCamera cam2 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+        PerspectiveCamera cam2 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), new SamplingPattern(1,1), Math.PI/4);
         
         RayTracer rayTracer2 = new RayTracer(world2, cam2);
         
@@ -67,7 +68,7 @@ public class Test1_Geometries {
         list3.add(sphere3_1);
         list3.add(sphere3_2);
         World world3 = new World(list3);
-        PerspectiveCamera cam3 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+        PerspectiveCamera cam3 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), new SamplingPattern(1,1), Math.PI/4);
         
         RayTracer rayTracer3 = new RayTracer(world3, cam3);
         
@@ -81,7 +82,7 @@ public class Test1_Geometries {
         list4.add(sphere4_1);
         list4.add(sphere4_2);
         World world4 = new World(list4);
-        OrthographicCamera cam4 = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),3);
+        OrthographicCamera cam4 = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), new SamplingPattern(1,1), 3);
         
         RayTracer rayTracer4 = new RayTracer(world4, cam4);
         
@@ -93,7 +94,7 @@ public class Test1_Geometries {
         ArrayList list5 = new ArrayList();
         list5.add(tri);
         World world5 = new World(list5);
-        PerspectiveCamera cam5 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+        PerspectiveCamera cam5 = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), new SamplingPattern(1,1), Math.PI/4);
         
         RayTracer rayTracer5 = new RayTracer(world5, cam5);
         
@@ -105,7 +106,7 @@ public class Test1_Geometries {
         ArrayList list6 = new ArrayList();
         list6.add(box);
         World world6 = new World(list6);
-        PerspectiveCamera cam6 = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0),Math.PI/4);
+        PerspectiveCamera cam6 = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), new SamplingPattern(1,1), Math.PI/4);
         
         RayTracer rayTracer6 = new RayTracer(world6, cam6);
         

@@ -21,6 +21,7 @@ import material.TransparentMaterial;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import sampling.SamplingPattern;
 import texture.SingleColorTexture;
 import world.World;
 
@@ -77,7 +78,8 @@ public class Test6_TransparentMaterial {
         
         PerspectiveCamera cam = new PerspectiveCamera(new Point3(8, 8, 8), 
                                                       new Vector3(-1, -1, -1), 
-                                                      new Vector3(0, 1, 0), 
+                                                      new Vector3(0, 1, 0),
+                                                      new SamplingPattern(1,1), 
                                                       Math.PI/4);
         
         RayTracer raytracer = new RayTracer(world, cam);
