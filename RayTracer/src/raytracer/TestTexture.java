@@ -16,6 +16,7 @@ import material.SingleColorMaterial;
 import mathlibrary.Normal3;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
+import sampling.SamplingPattern;
 import texture.ImageTexture;
 import texture.SingleColorTexture;
 import texture.TexCoord2;
@@ -62,7 +63,7 @@ public class TestTexture {
         geoList1.add(triangle);
         geoList1.add(box);
         
-        PerspectiveCamera cam1 = new PerspectiveCamera(new Point3(0,0,5), new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+        PerspectiveCamera cam1 = new PerspectiveCamera(new Point3(0,0,5), new Vector3(0,0,-1), new Vector3(0,1,0), new SamplingPattern(1,1), Math.PI/4);
         
         // lights
         PointLight light01 = new PointLight(new Point3(4, 4, 4), new Color(1,1,1), true);
