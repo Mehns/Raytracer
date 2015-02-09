@@ -3,6 +3,7 @@ package camera;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
 import raytracer.Ray;
+import sampling.SamplingPattern;
 
 /**
  * Abstract Base Class of a Camera
@@ -40,8 +41,10 @@ public abstract class Camera {
      */
     public final Vector3 w;
 
+    public final SamplingPattern pattern;
+    
     /**
-     * Constructor of abstract camera base class 
+     * Constructor of abstract camera base class for older tests
      * initialize e, g, t and calculates u, v, w
      * @param e Eye postion
      * @param g Gaze vector
@@ -59,7 +62,34 @@ public abstract class Camera {
         this.u = t.x(w).normalized();
         
         // v = w x u
-        this.v = w.x(u);        
+        this.v = w.x(u);
+        
+        this.pattern = null;
+    }
+    
+    /**
+     * Constructor of abstract camera base class 
+     * initialize e, g, t and calculates u, v, w
+     * @param e Eye postion
+     * @param g Gaze vector
+     * @param t up vector
+     * @param pattern for sampling
+     */
+    public Camera(Point3 e, Vector3 g, Vector3 t, SamplingPattern pattern) {
+        this.e = e;
+        this.g = g;
+        this.t = t;
+        
+        // w = - (g / |g|)
+        this.w = g.normalized().mul(-1.0);
+        
+        // u = t x w / |t x w|
+        this.u = t.x(w).normalized();
+        
+        // v = w x u
+        this.v = w.x(u); 
+        
+        this.pattern = pattern;
     }
     
     /**
@@ -70,14 +100,15 @@ public abstract class Camera {
      * @param y y coordinate of the pixel
      * @return a generated ray for one given pixel
      */
-    public Ray rayFor(int w, int h, int x, int y){
+    public abstract Ray[][] rayForSampling(int w, int h, int x, int y);
         
-        // d = -w
-        Vector3 d = this.w.mul(-1);
-        
-        // o = e + u*(x- ((w-1)/2)) + v*(y-((h-1)/2))
-        Point3 o = e.add(u.mul(x-((w-1)/2)).add(v.mul(y-((h-1)/2))));
-        
-        return new Ray(o, d);
-    }
+//        // d = -w
+//        Vector3 d = this.w.mul(-1);
+//        
+//        // o = e + u*(x- ((w-1)/2)) + v*(y-((h-1)/2))
+//        Point3 o = e.add(u.mul(x-((w-1)/2)).add(v.mul(y-((h-1)/2))));
+//        
+//        return new Ray(o, d);
+    
+    public abstract Ray rayFor(int w, int h, int x, int y);
 }

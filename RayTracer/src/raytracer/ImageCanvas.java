@@ -13,6 +13,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
+import java.util.ArrayList;
 import java.util.Objects;
 import world.World;
 
@@ -79,6 +80,36 @@ public class ImageCanvas extends Canvas {
                 Hit hit = world.hit(ray);
                 Color color;
                 
+                Ray[][] rays = cam.rayForSampling(image.getWidth(), image.getHeight(), x, y);
+                ArrayList<Hit> hits = new ArrayList();
+                
+                for(int i=0; i < rays.length; i++){
+                    for(int j=0; j< rays[0].length; j++){
+                        hits.add(world.hit(rays[i][j]));
+                    }
+                }
+                Color color2;
+                
+                double r = 0;
+                double g = 0;
+                double b = 0;
+                
+                for(Hit h: hits){
+                    if(h == null || h.geometry == null){
+                        r += backColor.r;
+                        g += backColor.g;
+                        b += backColor.b;
+                        //color2 = backColor;
+                    }else{
+                        color2 = h.geometry.material.colorFor(h, world, new Tracer(world, 6));
+                        r += color2.r;
+                        g += color2.g;
+                        b += color2.b;
+                    }
+                    
+                }
+                Color samplingColor = new Color(r/hits.size(), g/hits.size(), b/hits.size());
+                //samplingColor.mul(1/hits.length);
                 
                 if (hit == null || hit.geometry == null) {
                     color = backColor;
@@ -86,16 +117,16 @@ public class ImageCanvas extends Canvas {
                     color = hit.geometry.material.colorFor(hit, world, new Tracer(world, 6));
                 }
 
-                java.awt.Color convertColor = new java.awt.Color((float)color.r, 
-                                                                 (float)color.g, 
-                                                                 (float)color.b);
+                java.awt.Color convertColor = new java.awt.Color((float)samplingColor.r, 
+                                                                 (float)samplingColor.g, 
+                                                                 (float)samplingColor.b);
                 
                 raster.setDataElements(x, image.getHeight() -1 - y, colorModel.getDataElements(convertColor.getRGB(), null));
                                 
             }
         }
 
-        graphic.drawImage(image, 0, 0, this);        
+        graphic.drawImage(image, 0, 0, this);    
     }
 
     @Override

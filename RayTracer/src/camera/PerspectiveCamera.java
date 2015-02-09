@@ -3,12 +3,14 @@ package camera;
 import mathlibrary.Point3;
 import mathlibrary.Vector3;
 import raytracer.Ray;
+import sampling.SamplingPattern;
 
 /**
  * Class represents an perspective camera
  * @author Christian
  */
 public class PerspectiveCamera extends Camera{
+    
     public final double angle;
 
     /**
@@ -23,6 +25,53 @@ public class PerspectiveCamera extends Camera{
         this.angle = angle;
     }
 
+    /**
+     * initializes e, g, t, and angle
+     * @param e eye position
+     * @param g gaze vector
+     * @param t up vector
+     * @param angle factor
+     */
+    public PerspectiveCamera(Point3 e, Vector3 g, Vector3 t, SamplingPattern pattern, double angle) {
+        super(e, g, t, pattern);
+        this.angle = angle;
+    }
+    
+    @Override
+    public Ray[][] rayForSampling(int w, int h, int x, int y) {
+        double w1 = (double) w;
+        double h1 = (double) h;
+        double x1 = (double) x;
+        double y1 = (double) y;
+        
+        // o = e
+        Point3 o = this.e;
+        
+        Ray[][] rays=new Ray[pattern.points.length][pattern.points[0].length];
+ 
+        for(int i=0;i<pattern.points[0].length;i++){
+            for (int j=0;j<pattern.points.length;j++){
+                // -w * ((h/2)/tan a)
+                Vector3 calc1 = this.w.mul(-1).mul((h1/2) / Math.tan(this.angle/2));
+                
+                // u * (x - ((w-1)/2))
+                Vector3 calc2 = this.u.mul(x1 + pattern.points[i][j].x - ((w1-1)/2));
+        
+                // v * (y - ((h-1)/2))
+                Vector3 calc3 = this.v.mul(y1 + pattern.points[i][j].y - ((h1-1)/2));
+        
+                // r = -w * ((h/2)/tan a) + u * (x - ((w-1)/2)) + v * (y - ((h-1)/2))
+                Vector3 r = calc1.add(calc2.add(calc3));
+        
+                // d = r / |r|
+                Vector3 d = r.normalized();
+
+                rays[i][j] = new Ray(o, d);
+            }
+        }
+        return rays;
+    }
+    
     @Override
     public Ray rayFor(int w, int h, int x, int y) {
         
