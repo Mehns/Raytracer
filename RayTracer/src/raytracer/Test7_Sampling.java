@@ -46,7 +46,7 @@ public class Test7_Sampling {
         PerspectiveCamera cam = new PerspectiveCamera(new Point3(8, 8, 8), 
                                                       new Vector3(-1, -1, -1), 
                                                       new Vector3(0, 1, 0),
-                                                      new SamplingPattern(1,1),
+                                                      new SamplingPattern(10,10),
                                                       Math.PI/4);
         
         final RayTracer rayTracer1 = new RayTracer(world, cam);
